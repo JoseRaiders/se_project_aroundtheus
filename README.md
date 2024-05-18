@@ -11,11 +11,17 @@ The project is made so that all elements render responsive on popular devices sc
 - Flexbox
 - Grid
 - Media Queries
-- CSS animation and transform
+- Figma
 - git add
 - git commit
 - git push
 - Deploy to my personal page on GitHub
 
-## Plan on improving the project
+## Figma
+
+- [Link to the project on Figma](https://www.figma.com/file/Es8zZP3ARGH9JGcw60i3OD/Sprint-3_-Around-the-US?node-id=6432%3A147&t=7oYKsnPJeNJQDFCB-1)
+
+## Project
+
+- [GitHub Link for this project](https://github.com/JoseRaiders/se_project_aroundtheus)
 
