@@ -16,7 +16,113 @@
     <title>Around The U.S.</title>
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
-  <body class="page">
-    <div class="page__content">Testing</div>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="header__container">
+          <img
+            src="./images/logo.svg"
+            alt="Around The U.S. logo"
+            class="header__logo"
+          />
+          <div class="header__divider"></div>
+        </div>
+      </header>
+      <main class="content">
+        <section class="profile">
+          <div class="profile__section">
+            <img
+              class="profile__image"
+              src="./images/jacques-cousteau.jpg"
+              alt="Profile image"
+            />
+            <div class="profile__content">
+              <h1 class="profile__title">Jacques Cousteau</h1>
+              <button
+                class="profile__edit-button"
+                id="profile-edit-button"
+                type="button"
+              ></button>
+              <p class="profile__description">Explorer</p>
+            </div>
+            <button class="profile__add-button" type="button"></button>
+          </div>
+        </section>
+        <section class="cards">
+          <ul class="cards__details">
+            <li class="card">
+              <img
+                class="card__image"
+                src="./images/yosemite.jpg"
+                alt="Yosemite valley"
+              />
+              <div class="card__content">
+                <h2 class="card__title">Yosemite Valley</h2>
+                <button class="card__heart-button" type="button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                class="card__image"
+                src="./images/lake-louise.jpg"
+                alt="Lake Louise"
+              />
+              <div class="card__content">
+                <h2 class="card__title">Lake Louise</h2>
+                <button class="card__heart-button" type="button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                class="card__image"
+                src="./images/bald-mountains.jpg"
+                alt="Bald Mountains"
+              />
+              <div class="card__content">
+                <h2 class="card__title">Bald Mountains</h2>
+                <button class="card__heart-button" type="button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                class="card__image"
+                src="./images/latemar.jpg"
+                alt="Latemar"
+              />
+              <div class="card__content">
+                <h2 class="card__title">Latemar</h2>
+                <button class="card__heart-button" type="button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                class="card__image"
+                src="./images/vanoise.jpg"
+                alt="Vanoise National Park"
+              />
+              <div class="card__content">
+                <h2 class="card__title">Vanoise National Park</h2>
+                <button class="card__heart-button" type="button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                class="card__image"
+                src="./images/lago.jpg"
+                alt="Lago di Braies"
+              />
+              <div class="card__content">
+                <h2 class="card__title">Lago di Braies</h2>
+                <button class="card__heart-button" type="button"></button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p class="footer__copyright">&#169; 2024 Arount The U.S.</p>
+      </footer>
+    </div>
   </body>
 </html>
