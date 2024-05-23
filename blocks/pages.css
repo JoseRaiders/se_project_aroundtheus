@@ -2,15 +2,17 @@
   background-color: #000;
   font-family: "Inter", Arial, sans-serif;
   color: #fff;
+  margin: 0;
+  padding: 0;
+  min-width: 1280px;
 }
 
 .header {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto;
   width: 880px;
   margin: 0 auto;
   padding: 45px 0 0;
-  position: relative;
   z-index: 1;
   box-sizing: border-box;
 }
@@ -28,14 +30,10 @@
 }
 
 .profile {
-  max-width: 880px;
-  margin: 0 auto;
-}
-
-.profile__section {
   display: flex;
   align-items: center;
-  padding-bottom: 51px;
+  width: 880px;
+  margin: 0 auto;
 }
 
 .profile__image {
@@ -50,20 +48,21 @@
   grid-template-areas:
     "title button"
     "description description";
-  gap: 7px 18px;
+  grid-template-columns: repeat(auto-fit, minmax(207px, 1fr));
+  grid-gap: 7px 18px;
   align-items: center;
 }
 
 .profile__title {
   font-weight: 500;
   font-size: 42px;
-  line-height: 48px;
+  line-height: 1.1;
   font-family: "Inter", Arial, sans-serif;
   grid-area: title;
   margin: 0;
+  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .profile__edit-button {
@@ -78,12 +77,13 @@
 
 .profile__edit-button:hover {
   opacity: 60%;
+  cursor: pointer;
 }
 
 .profile__description {
   font-weight: 400;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 1.1;
   grid-area: description;
   margin: 0;
   overflow: hidden;
@@ -109,22 +109,17 @@
 }
 
 .cards__details {
-  margin: 0;
+  margin: 51px 0 0;
   padding: 0;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, 282px);
-  gap: 20px 17px;
+  grid-gap: 20px 17px;
   list-style-type: none;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-}
-
 .card__image {
-  width: 282px;
+  width: 100%;
   height: 282px;
   display: block;
   object-fit: cover;
@@ -144,20 +139,19 @@
 .card__title {
   margin: 0;
   font-size: 24px;
+  line-height: 1.2;
   font-weight: 900;
   font-family: "Inter", Arial, sans-serif;
-  line-height: 29px;
   color: #000;
+  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .card__heart-button {
-  padding: 0;
   border: none;
   margin-right: 20px;
-  background: url(../images/heart-inactive.svg) center no-repeat;
+  background: url(../images/heart-active.svg) center no-repeat;
   width: 21px;
   height: 18px;
   color: #000;
@@ -166,13 +160,12 @@
 .card__heart-button:hover {
   color: #000;
   opacity: 50%;
+  cursor: pointer;
 }
 
 .footer {
   width: 880px;
   margin: 0 auto;
-  display: flex;
-  justify-content: flex-start;
   padding: 67px 0 60px;
 }
 
@@ -181,6 +174,87 @@
   color: #545454;
   font-weight: 400;
   font-size: 18px;
-  line-height: 21px;
+  line-height: 1.1;
   font-family: "Inter", Arial, sans-serif;
+}
+
+/* Desktop (1280px) */
+@media (max-width: 1280px) {
+  .page {
+    min-width: 775px;
+  }
+
+  .header {
+    width: 775px;
+  }
+
+  .profile {
+    width: 775px;
+  }
+
+  .cards {
+    max-width: 775px;
+  }
+
+  .footer {
+    width: 775px;
+  }
+}
+
+/* Tablet (775px) */
+@media (max-width: 775px) {
+  .page {
+    min-width: 320px;
+  }
+
+  .header {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .header__logo {
+    padding-bottom: 20px;
+  }
+
+  .profile {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .profile__image {
+    width: 96px;
+    height: 96px;
+    margin-right: 15px;
+  }
+
+  .cards {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+
+  .cards__details {
+    grid-template-columns: repeat(auto-fit, 100%);
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .footer {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+/* Mobile (320px) */
+@media (max-width: 320px) {
+  .profile__image {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+  }
+
+  .card__image {
+    height: 200px;
+  }
 }
