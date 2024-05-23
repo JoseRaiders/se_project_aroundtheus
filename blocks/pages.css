@@ -4,13 +4,12 @@
   color: #fff;
   margin: 0;
   padding: 0;
-  min-width: 1280px;
 }
 
 .header {
   display: grid;
   grid-template-columns: auto;
-  width: 880px;
+  max-width: 880px;
   margin: 0 auto;
   padding: 45px 0 0;
   z-index: 1;
@@ -32,7 +31,7 @@
 .profile {
   display: flex;
   align-items: center;
-  width: 880px;
+  max-width: 880px;
   margin: 0 auto;
 }
 
@@ -41,14 +40,16 @@
   height: 120px;
   border-radius: 50%;
   margin-right: 30px;
+  object-fit: cover;
+  background-position: center;
 }
 
-.profile__content {
+.profile__info {
   display: grid;
   grid-template-areas:
     "title button"
     "description description";
-  grid-template-columns: repeat(auto-fit, minmax(207px, 1fr));
+  grid-template-columns: minmax(auto, 373) auto;
   grid-gap: 7px 18px;
   align-items: center;
 }
@@ -66,7 +67,7 @@
 }
 
 .profile__edit-button {
-  background: url(../images/edit-icon.svg) center no-repeat;
+  background: transparent url(../images/edit-icon.svg) center no-repeat;
   height: 24px;
   width: 24px;
   grid-area: button;
@@ -86,15 +87,16 @@
   line-height: 1.1;
   grid-area: description;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   overflow: hidden;
 }
 
 .profile__add-button {
   margin-left: auto;
-  background: url(../images/add-icon.svg) center no-repeat;
+  background: transparent url(../images/add-icon.svg) center no-repeat;
   width: 150px;
   height: 50px;
-  border-radius: 2px;
   border: solid #ffffff 2px;
 }
 
@@ -164,7 +166,7 @@
 }
 
 .footer {
-  width: 880px;
+  max-width: 880px;
   margin: 0 auto;
   padding: 67px 0 60px;
 }
@@ -209,7 +211,7 @@
 
   .header {
     width: 100%;
-    padding: 20px;
+    padding: 20px 20px 0;
   }
 
   .header__logo {
@@ -218,7 +220,7 @@
 
   .profile {
     width: 100%;
-    padding: 20px;
+    padding: 0 20px;
   }
 
   .profile__image {
@@ -242,7 +244,7 @@
 
   .footer {
     width: 100%;
-    padding: 20px;
+    margin: 0 20px;
   }
 }
 
@@ -251,10 +253,14 @@
   .profile__image {
     width: 80px;
     height: 80px;
-    margin-right: 10px;
+  }
+
+  .profile_info {
+    width: 282px;
   }
 
   .card__image {
-    height: 200px;
+    width: 282px;
+    height: 361px;
   }
 }
