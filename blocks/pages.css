@@ -2,37 +2,39 @@
   background-color: #000;
   font-family: "Inter", Arial, sans-serif;
   color: #fff;
-  margin: 0;
-  padding: 0;
+}
+
+.page__section {
+  max-width: 880px;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.page__content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .header {
-  display: grid;
-  grid-template-columns: auto;
-  max-width: 880px;
-  margin: 0 auto;
-  padding: 45px 0 0;
-  z-index: 1;
-  box-sizing: border-box;
+  margin-top: 45px;
 }
 
 .header__logo {
   width: 173px;
   height: 33px;
-  padding-bottom: 41px;
 }
 
 .header__divider {
-  border-bottom: 1px solid #545454b3;
-  width: 100%;
-  margin-bottom: 40px;
+  margin-top: 41px;
+  border: 1px solid #545454b3;
 }
 
 .profile {
   display: flex;
   align-items: center;
-  max-width: 880px;
-  margin: 0 auto;
+  padding-top: 40px;
 }
 
 .profile__image {
@@ -49,18 +51,16 @@
   grid-template-areas:
     "title button"
     "description description";
-  grid-template-columns: minmax(auto, 373) auto;
-  grid-gap: 7px 18px;
-  align-items: center;
+  grid-template-columns: minmax(auto, 373px) auto;
 }
 
 .profile__title {
-  font-weight: 500;
   font-size: 42px;
   line-height: 1.1;
   font-family: "Inter", Arial, sans-serif;
+  font-weight: 500;
   grid-area: title;
-  margin: 0;
+  margin: 0 18px 0 0;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -86,7 +86,7 @@
   font-size: 18px;
   line-height: 1.1;
   grid-area: description;
-  margin: 0;
+  margin: 7px 0 0;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -97,6 +97,7 @@
   background: transparent url(../images/add-icon.svg) center no-repeat;
   width: 150px;
   height: 50px;
+  border-radius: 2px;
   border: solid #ffffff 2px;
 }
 
@@ -106,35 +107,39 @@
 }
 
 .cards {
-  max-width: 880px;
-  margin: 0 auto;
+  margin-top: 51px;
 }
 
-.cards__details {
-  margin: 51px 0 0;
+.cards__list {
+  margin: 0;
   padding: 0;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, 282px);
   grid-gap: 20px 17px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
 }
 
 .card__image {
-  width: 100%;
+  width: 282px;
   height: 282px;
   display: block;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 }
 
-.card__content {
+.card__description {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
   color: #000;
-  padding: 25px 0 25px 20px;
+  padding: 25px 20px;
   border-radius: 0 0 10px 10px;
 }
 
@@ -152,8 +157,7 @@
 
 .card__heart-button {
   border: none;
-  margin-right: 20px;
-  background: url(../images/heart-active.svg) center no-repeat;
+  background: transparent url(../images/heart-active.svg) center no-repeat;
   width: 21px;
   height: 18px;
   color: #000;
@@ -165,102 +169,11 @@
   cursor: pointer;
 }
 
-.footer {
-  max-width: 880px;
-  margin: 0 auto;
-  padding: 67px 0 60px;
-}
-
 .footer__copyright {
-  margin: 0;
+  margin: 67px 0 60px;
   color: #545454;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.1;
   font-family: "Inter", Arial, sans-serif;
-}
-
-/* Desktop (1280px) */
-@media (max-width: 1280px) {
-  .page {
-    min-width: 775px;
-  }
-
-  .header {
-    width: 775px;
-  }
-
-  .profile {
-    width: 775px;
-  }
-
-  .cards {
-    max-width: 775px;
-  }
-
-  .footer {
-    width: 775px;
-  }
-}
-
-/* Tablet (775px) */
-@media (max-width: 775px) {
-  .page {
-    min-width: 320px;
-  }
-
-  .header {
-    width: 100%;
-    padding: 20px 20px 0;
-  }
-
-  .header__logo {
-    padding-bottom: 20px;
-  }
-
-  .profile {
-    width: 100%;
-    padding: 0 20px;
-  }
-
-  .profile__image {
-    width: 96px;
-    height: 96px;
-    margin-right: 15px;
-  }
-
-  .cards {
-    max-width: 100%;
-    padding: 0 20px;
-  }
-
-  .cards__details {
-    grid-template-columns: repeat(auto-fit, 100%);
-  }
-
-  .card {
-    margin-bottom: 20px;
-  }
-
-  .footer {
-    width: 100%;
-    margin: 0 20px;
-  }
-}
-
-/* Mobile (320px) */
-@media (max-width: 320px) {
-  .profile__image {
-    width: 80px;
-    height: 80px;
-  }
-
-  .profile_info {
-    width: 282px;
-  }
-
-  .card__image {
-    width: 282px;
-    height: 361px;
-  }
 }
