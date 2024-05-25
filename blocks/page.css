@@ -277,9 +277,9 @@
   }
 
   .profile__info {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+    display: grid;
+    align-items: center;
+    max-width: 310px;
   }
 
   .profile__title {
@@ -296,8 +296,7 @@
   }
 
   .profile__edit-button {
-    margin-top: 5px;
-    margin-left: 10px;
+    margin: 5px 0 0;
   }
 
   .profile__description {
@@ -309,15 +308,17 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 250px;
   }
 
   .profile__add-button {
     background: transparent url(../images/add-icon.svg) center no-repeat;
-    width: 300px;
     height: 50px;
     border-radius: 2px;
     border: solid #ffffff 2px;
+    margin: 0 0 0 auto;
+    max-width: 282px;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .cards {
