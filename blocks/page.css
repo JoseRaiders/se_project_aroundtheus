@@ -181,7 +181,7 @@
 }
 
 /* styles for small to large smartphones */
-@media screen and (max-width: 425px) and (min-width: 320px) {
+@media screen and (max-width: 426px) and (min-width: 320px) {
   .header {
     margin: 28px 0 0;
   }
@@ -228,7 +228,7 @@
   }
 
   .profile__description {
-    margin: 14px 0 0;
+    margin: 14px 20px 0;
     font-size: 14px;
     color: #fff;
     font-weight: 400;
@@ -265,11 +265,11 @@
 
 /* styles for tablets */
 @media (max-width: 768px) {
-  .page__section {
+  /* .page__section {
     margin: 40px 30px 0;
     max-width: calc(100% - 60px);
     padding: 0;
-  }
+  } */
 
   .profle__title {
     margin: 0;
