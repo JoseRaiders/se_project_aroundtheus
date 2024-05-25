@@ -220,6 +220,9 @@
     font-family: "Inter", Arial, sans-serif;
     text-align: center;
     margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .profile__edit-button {
@@ -236,10 +239,13 @@
     font-family: "Inter", Arial, sans-serif;
     text-align: center;
     width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .profile__add-button {
-    margin: 36px 19px 0;
+    margin: 36px 0 0;
     width: 282px;
     height: 50px;
   }
@@ -263,31 +269,17 @@
   }
 }
 
-/* styles for tablets */
-@media (max-width: 768px) {
-  /* .page__section {
-    margin: 40px 30px 0;
-    max-width: calc(100% - 60px);
-    padding: 0;
-  } */
-
-  .profle__title {
-    margin: 0;
-    font-size: 26px;
-    color: #fff;
-    font-weight: 500;
-    line-height: 1.1;
-    font-family: "Inter", Arial, sans-serif;
-  }
-}
-
-/* @media screen and (max-width: 776px) and (min-width: 600px) {
-  .header__logo {
-    margin-left: 40px;
-  }
-
-  .header__divider {
+@media screen and (max-width: 800px) and (min-width: 720px) {
+  .page__section {
     margin: 40px 40px 0;
+    max-width: calc(100% - 80px);
+    padding: 0;
+  }
+
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
   }
 
   .profile__title {
@@ -296,23 +288,48 @@
     font-weight: 500;
     line-height: 1.1;
     font-family: "Inter", Arial, sans-serif;
-    margin-right: 10px;
+    margin: 0;
+    padding: 0;
+    text-overflow: ellipsis;
+    white-space: pre-line;
+    overflow: hidden;
+  }
+
+  .profile__edit-button {
+    margin-top: 5px;
+    margin-left: 10px;
   }
 
   .profile__description {
-    margin: 14px 0 0;
     font-size: 16px;
     color: #fff;
     font-weight: 400;
     line-height: 1.1;
     font-family: "Inter", Arial, sans-serif;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 250px;
   }
 
   .profile__add-button {
-    margin: 0;
+    background: transparent url(../images/add-icon.svg) center no-repeat;
+    width: 300px;
+    height: 50px;
+    border-radius: 2px;
+    border: solid #ffffff 2px;
   }
 
-  .footer {
-    margin-left: 40px;
+  .cards {
+    margin-top: 40px;
   }
-} */
+
+  .footer__copyright {
+    font-size: 16px;
+    color: #545454;
+    font-weight: 400;
+    line-height: 1.1;
+    font-family: "Inter", Arial, sans-serif;
+    margin: 0 0 40px;
+  }
+}
