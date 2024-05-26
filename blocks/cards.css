@@ -21,3 +21,9 @@
     row-gap: 20px;
   }
 }
+
+@media screen and (max-width: 800px) and (min-width: 720px) {
+  .cards {
+    margin-top: 40px;
+  }
+}

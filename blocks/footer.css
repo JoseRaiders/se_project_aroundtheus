@@ -19,3 +19,15 @@
     padding: 0;
   }
 }
+
+@media screen and (max-width: 800px) and (min-width: 720px) {
+  .footer__copyright {
+    font-size: 16px;
+    color: #545454;
+    font-weight: 400;
+    line-height: 1.1;
+    font-family: "Inter", Arial, sans-serif;
+    margin: 0 0 40px;
+    padding: 0;
+  }
+}
