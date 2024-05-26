@@ -46,6 +46,7 @@
 .profile__edit-button:hover {
   opacity: 60%;
   cursor: pointer;
+  transition: 0.02s;
 }
 
 .profile__description {
@@ -72,6 +73,7 @@
 .profile__add-button:hover {
   cursor: pointer;
   opacity: 60%;
+  transition: 0.02s;
 }
 
 /* styles for tablets */
@@ -166,7 +168,7 @@
   }
 
   .profile__description {
-    margin: 14px 20px 0;
+    margin: 14px 0 0;
     font-size: 14px;
     color: #fff;
     font-weight: 400;
