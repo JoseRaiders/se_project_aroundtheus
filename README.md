@@ -23,6 +23,6 @@ The project is made so that all elements render responsive on popular devices sc
 
 ## Project
 
-- [GitHub Link for this project](https://github.com/JoseRaiders/se_project_aroundtheus)
-- [Project recording](https://1drv.ms/u/s!AtG-P3xApDTIiYJFDAMa_u-V0RrCQw?e=wX0tea)
+- [GitHub Page to this project](https://joseraiders.github.io/se_project_aroundtheus/)
+- [Project recording](https://app.screencastify.com/v3/watch/SbWKi3YebdRlaJvz3ErB)
 
