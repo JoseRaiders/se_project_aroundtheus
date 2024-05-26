@@ -18,6 +18,7 @@
   min-height: 100vh;
 }
 
+/* styles for tablets */
 @media screen and (max-width: 800px) and (min-width: 720px) {
   .page__section {
     margin: 40px 40px 0;
