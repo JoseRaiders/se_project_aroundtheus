@@ -1,15 +1,13 @@
 .header {
   margin-top: 45px;
+  padding-bottom: 41px;
+  border-bottom: 1px solid #545454b3;
+  width: 100%;
 }
 
 .header__logo {
   width: 173px;
   height: 33px;
-}
-
-.header__divider {
-  margin-top: 41px;
-  border: 1px solid #545454b3;
 }
 
 /* styles for small to large smartphones */
@@ -22,9 +20,5 @@
     margin-left: 20px;
     width: 126px;
     height: 24px;
-  }
-
-  .header__divider {
-    margin-top: 32px;
   }
 }
