@@ -91,7 +91,6 @@
   .profile__title {
     font-size: 30px;
     color: #fff;
-    margin: 0;
     padding: 0;
   }
 
@@ -105,8 +104,6 @@
   }
 
   .profile__add-button {
-    background: transparent url(../images/add-icon.svg) center no-repeat;
-    margin: 0 0 0 auto;
     max-width: 282px;
     display: flex;
     justify-content: flex-end;
@@ -135,7 +132,6 @@
     font-size: 22px;
     color: #fff;
     text-align: center;
-    margin: 0;
     max-width: 200px;
   }
 
@@ -156,6 +152,5 @@
   .profile__add-button {
     margin: 36px 0 0;
     width: 282px;
-    height: 50px;
   }
 }
