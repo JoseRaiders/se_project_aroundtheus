@@ -1,0 +1,149 @@
+.modal {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1030;
+  padding: 0 19px;
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__container {
+  position: relative;
+  width: 430px;
+  background-color: #fff;
+  margin: auto;
+  border-radius: 10px;
+  padding: 36px;
+  border: none;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+.modal__close {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+  border: none;
+  background-image: url(../images/desktop-close.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.modal__close:hover {
+  opacity: 60%;
+  cursor: pointer;
+  transition: 0.02s;
+}
+
+.modal__heading {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 900;
+  font-family: "Inter", Arial, sans-serif;
+  color: #000;
+  text-align: left;
+  margin: 0 0 54px;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+
+.modal__title {
+  margin-bottom: 30px;
+  padding: 0 0 13px;
+  color: #000;
+  font-size: 14px;
+  line-height: 1.1;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.modal__description {
+  padding: 0 0 13px;
+  color: #000;
+  font-size: 14px;
+  line-height: 1.1;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+input:focus {
+  outline: none;
+}
+
+.modal__button {
+  margin: 48px 0 0;
+  padding: 0;
+  background-color: #000;
+  max-width: 100%;
+  height: 50px;
+  border-radius: 2px;
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.1;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+}
+
+.modal__button:hover {
+  opacity: 80%;
+  cursor: pointer;
+  transition: 0.02s;
+}
+
+/* styles for small to large smartphones */
+@media screen and (max-width: 600px) and (min-width: 320px) {
+  .modal__container {
+    width: 282px;
+    padding: 25px 22px;
+  }
+
+  .modal__close {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background-color: transparent;
+    bottom: calc(100% + 20px);
+    left: calc(100% - 30px);
+    border: none;
+    background-image: url(../images/mobile-close.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .modal__heading {
+    font-size: 18px;
+    line-height: 1.1;
+    text-align: left;
+    margin: 0 0 75px;
+  }
+
+  .modal__button {
+    margin: 45px 0 0;
+  }
+}
