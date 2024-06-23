@@ -1,4 +1,5 @@
 .modal {
+  /* display: none; use this for testing purposes */
   visibility: hidden;
   position: fixed;
   top: 0;
