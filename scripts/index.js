@@ -1,4 +1,4 @@
-let initialCards = [
+const initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -25,8 +25,6 @@ let initialCards = [
   },
 ];
 
-// let userElement = userTemplate.querySelector(".card").cloneNode(true);
-
 /*=============================================
 =                  Elements                   =
 =============================================*/
@@ -47,6 +45,12 @@ const cardTemplate =
 /*=============================================
 =                 Functions                   =
 =============================================*/
+function fillProfileForm() {
+  profileTitleInput.value = profileTitle.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
+  profileEditModal.classList.add("modal_opened");
+}
+
 function closePopup() {
   profileEditModal.classList.remove("modal_opened");
 }
@@ -79,11 +83,7 @@ function handleProfileFormSubmit(evt) {
 /*=============================================
 =              Event Listeners                =
 =============================================*/
-profileEditBtn.addEventListener("click", function () {
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
-  profileEditModal.classList.add("modal_opened");
-});
+profileEditBtn.addEventListener("click", fillProfileForm);
 
 profileEditModalClose.addEventListener("click", closePopup);
 

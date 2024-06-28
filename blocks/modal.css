@@ -68,7 +68,7 @@
   padding: 0 0 13px;
   color: #000;
   font-size: 14px;
-  line-height: 1.1;
+  line-height: 1.2;
   font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
   text-overflow: ellipsis;
@@ -82,7 +82,7 @@
   margin-bottom: 0;
 }
 
-input:focus {
+.modal__input:focus {
   outline: none;
 }
 
