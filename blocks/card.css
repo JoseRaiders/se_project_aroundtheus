@@ -38,7 +38,7 @@
 
 .card__heart-button {
   border: none;
-  background: transparent url(../images/heart-active.svg) center no-repeat;
+  background: transparent url(../images/heart-disabled.svg) center no-repeat;
   width: 21px;
   height: 18px;
   color: #000;
