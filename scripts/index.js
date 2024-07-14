@@ -71,6 +71,22 @@ function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageElement = cardElement.querySelector(".card__image");
   const cardTitleElement = cardElement.querySelector(".card__title");
+
+  // find the like button. when clicked, set to active
+  const likeButton = cardElement.querySelector(".card__like-button");
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
+  // find delete button, click eventListener and .remove method
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
+  // add click listener to the cardImageElement
+  // when clicked, use the openModal with previewImageModal
+  // change with the image src
+
   cardImageElement.src = data.link;
   cardImageElement.alt = data.name;
   cardTitleElement.textContent = data.name;
@@ -118,10 +134,3 @@ addNewCardBtn.addEventListener("click", openModal);
 addNewCardClose.addEventListener("click", closePopup);
 
 newCardForm.addEventListener("submit", handleAddardFormSubmit);
-
-const cardLikeBtn = document.querySelectorAll(".card__like-button");
-cardLikeBtn.forEach((likeButton) => {
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
-});

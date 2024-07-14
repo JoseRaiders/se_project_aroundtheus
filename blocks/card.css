@@ -1,5 +1,6 @@
 .card {
   display: flex;
+  position: relative;
   flex-direction: column;
   list-style-type: none;
 }
@@ -37,10 +38,10 @@
 }
 
 .card__like-button {
-  border: none;
   background: transparent url(../images/like-disabled.svg) center no-repeat;
   width: 21px;
   height: 18px;
+  border: none;
   margin: 0;
   flex-shrink: 0;
   padding: 0;
@@ -52,5 +53,23 @@
 
 .card__like-button:hover {
   opacity: 50%;
+  cursor: pointer;
+}
+
+.card__delete-button {
+  background: transparent url(../images/rubbish.svg) center no-repeat;
+  /* background-color: #fff; */
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  width: 18px;
+  height: 19px;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card__delete-button:hover {
+  opacity: 60%;
   cursor: pointer;
 }
