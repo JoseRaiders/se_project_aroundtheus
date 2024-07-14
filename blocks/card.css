@@ -58,7 +58,6 @@
 
 .card__delete-button {
   background: transparent url(../images/rubbish.svg) center no-repeat;
-  /* background-color: #fff; */
   position: absolute;
   top: 18px;
   right: 15px;
