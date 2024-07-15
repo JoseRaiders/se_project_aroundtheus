@@ -49,6 +49,8 @@ const newCardForm = cardModal.querySelector("#card-form");
 const cardTitleInput = newCardForm.querySelector("#modal-card-title");
 const cardLinkInput = newCardForm.querySelector("#modal-card-link");
 
+const imagePreviewModal = document.querySelector("#modal-image-preview");
+
 /*=============================================
 =                 Functions                   =
 =============================================*/
@@ -71,6 +73,9 @@ function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageElement = cardElement.querySelector(".card__image");
   const cardTitleElement = cardElement.querySelector(".card__title");
+  cardImageElement.src = data.link;
+  cardImageElement.alt = data.name;
+  cardTitleElement.textContent = data.name;
 
   // find the like button. when clicked, set to active
   const likeButton = cardElement.querySelector(".card__like-button");
@@ -83,13 +88,20 @@ function getCardElement(data) {
   deleteButton.addEventListener("click", () => {
     cardElement.remove();
   });
+
   // add click listener to the cardImageElement
   // when clicked, use the openModal with previewImageModal
   // change with the image src
+  const modalImage = imagePreviewModal.querySelector(".modal__image-preview");
+  const modalTitle = imagePreviewModal.querySelector(".modal__image-title");
+  cardImageElement.addEventListener("click", () => {
+    modalImage.src = data.link;
+    modalImage.alt = data.name;
+    modalTitle.textContent = data.name;
 
-  cardImageElement.src = data.link;
-  cardImageElement.alt = data.name;
-  cardTitleElement.textContent = data.name;
+    openModal();
+  });
+
   return cardElement;
 }
 
@@ -134,3 +146,5 @@ addNewCardBtn.addEventListener("click", openModal);
 addNewCardClose.addEventListener("click", closePopup);
 
 newCardForm.addEventListener("submit", handleAddardFormSubmit);
+
+// imagePreviewModalClose.addEventListener("click", closePopup);

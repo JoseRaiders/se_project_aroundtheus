@@ -14,6 +14,8 @@
 
 .modal_opened {
   visibility: visible;
+  transition: visibility 0s linear 0s, opacity 0.3s linear;
+  pointer-events: auto;
 }
 
 .modal__container {
@@ -105,6 +107,20 @@
   opacity: 80%;
   cursor: pointer;
   transition: 0.02s;
+}
+
+.modal__image-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  color: #fff;
+  background-color: transparent;
+  padding: 10px;
+  max-width: 75vw;
+  max-height: 75vh;
+  width: auto;
+  height: auto;
 }
 
 /* styles for small to large smartphones */

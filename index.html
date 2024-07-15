@@ -114,15 +114,22 @@
         </form>
       </div>
     </div>
+    <!-- Image preview modal -->
+    <div class="modal" id="modal-image-preview">
+      <div class="modal__container modal__image-preview">
+        <button class="modal__close" id="modal-image-close"></button>
+        <img class="modal__image-preview" src="" alt="" />
+        <p class="modal__image-title"></p>
+      </div>
+    </div>
+    <!-- Card template -->
     <template id="card-template">
       <li class="card">
         <button
           class="card__delete-button"
           type="button"
           aria-label="Delete button"
-        >
-          <!-- <img src="./images/rubbish.svg" alt="Delete card" /> -->
-        </button>
+        ></button>
         <img class="card__image" src="" alt="" />
         <div class="card__description">
           <h2 class="card__title"></h2>
