@@ -113,14 +113,34 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
-  color: #fff;
+  align-items: center;
   background-color: transparent;
   padding: 10px;
   max-width: 75vw;
   max-height: 75vh;
   width: auto;
   height: auto;
+}
+
+.modal__image-preview {
+  object-fit: contain;
+  max-height: 75vh;
+  max-width: 75vw;
+  width: auto;
+  height: auto;
+}
+
+.modal__image-title {
+  color: #fff;
+  text-align: left;
+  width: 100%;
+  padding: 10px;
+  margin: 40px;
+}
+
+.modal__close_image-preview {
+  bottom: calc(100% + 5px);
+  left: calc(100% - 5px);
 }
 
 /* styles for small to large smartphones */
