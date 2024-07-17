@@ -109,7 +109,7 @@
   transition: 0.02s;
 }
 
-.modal__image-preview {
+.modal__image-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -132,14 +132,18 @@
 
 .modal__image-title {
   color: #fff;
+  font-size: 12px;
+  line-height: 1.2;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
   text-align: left;
   width: 100%;
-  padding: 10px;
-  margin: 40px;
+  padding-top: 10px;
+  margin: 0;
 }
 
 .modal__close_image-preview {
-  bottom: calc(100% + 5px);
+  bottom: calc(100% + 18px);
   left: calc(100% - 5px);
 }
 
