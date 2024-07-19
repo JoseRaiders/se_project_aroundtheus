@@ -121,7 +121,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closePopup();
+  closePopup(profileEditModal);
 }
 
 function handleAddardFormSubmit(evt) {
@@ -133,7 +133,7 @@ function handleAddardFormSubmit(evt) {
     link,
   });
   cardListElement.prepend(cardElement);
-  closePopup();
+  closePopup(cardModal);
 }
 
 /*=============================================
