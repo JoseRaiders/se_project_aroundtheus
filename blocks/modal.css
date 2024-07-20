@@ -150,7 +150,7 @@
 }
 
 /* styles for small to large smartphones */
-@media screen and (max-width: 600px) and (min-width: 320px) {
+@media screen and (min-width: 320px) {
   .modal__container {
     width: 282px;
     padding: 25px 22px;
@@ -178,5 +178,26 @@
 
   .modal__button {
     margin: 45px 0 0;
+  }
+
+  .modal__image-container {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 600px) and (min-width: 500px) {
+  .modal__image-container {
+    padding: 0;
+  }
+
+  .modal__close_image-preview {
+    bottom: calc(100% + 15px);
+    left: calc(100% + 60px);
+  }
+
+  .modal__image-title {
+    padding: 10px 0 0;
+    margin: 0;
+    text-align: center;
   }
 }

@@ -105,9 +105,16 @@ function getCardElement(data) {
 }
 
 // rendering the initial cards
+function renderCard(item, method = "prepend") {
+  const cardElement = getCardElement(item);
+  // Add the card into the section using the method
+  cardListElement[method](cardElement);
+}
+
 initialCards.forEach((data) => {
-  const cardElement = getCardElement(data);
-  cardListElement.prepend(cardElement);
+  // const cardElement = getCardElement(data);
+  // cardListElement.prepend(cardElement);
+  renderCard(data);
 });
 
 /*=============================================
@@ -128,6 +135,7 @@ function handleAddardFormSubmit(evt) {
     name,
     link,
   });
+
   cardListElement.prepend(cardElement);
   closePopup(cardModal);
   evt.target.reset();
