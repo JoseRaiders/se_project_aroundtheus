@@ -150,7 +150,7 @@
 }
 
 /* styles for small to large smartphones */
-@media screen and (min-width: 320px) {
+@media screen and (max-width: 400px) and (min-width: 320px) {
   .modal__container {
     width: 282px;
     padding: 25px 22px;
@@ -186,13 +186,31 @@
 }
 
 @media screen and (max-width: 600px) and (min-width: 500px) {
+  .modal__container {
+    width: 282px;
+    padding: 25px 22px;
+  }
+
   .modal__image-container {
     padding: 0;
   }
 
+  .modal__close {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background-color: transparent;
+    bottom: calc(100% + 20px);
+    left: calc(100% - 25px);
+    border: none;
+    background-image: url(../images/mobile-close.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
   .modal__close_image-preview {
     bottom: calc(100% + 15px);
-    left: calc(100% + 60px);
+    left: calc(100% + 50px);
   }
 
   .modal__image-title {
