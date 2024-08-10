@@ -161,3 +161,32 @@ newCardForm.addEventListener("submit", handleAddardFormSubmit);
 imagePreviewModalClose.addEventListener("click", () =>
   closePopup(imagePreviewModal)
 );
+
+// esc key event listener
+document.addEventListener("keydown", (evt) => {
+  if (evt.key === "Escape" || evt.key === "Esc") {
+    const openedModal = document.querySelector(".modal_opened");
+    if (openedModal) {
+      closePopup(openedModal);
+    }
+  }
+});
+
+// overlay event listener
+profileEditModal.addEventListener("click", (evt) => {
+  if (evt.target === profileEditModal) {
+    closePopup(profileEditModal);
+  }
+});
+
+cardModal.addEventListener("click", (evt) => {
+  if (evt.target === cardModal) {
+    closePopup(cardModal);
+  }
+});
+
+imagePreviewModal.addEventListener("click", (evt) => {
+  if (evt.target === imagePreviewModal) {
+    closePopup(imagePreviewModal);
+  }
+});
