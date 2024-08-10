@@ -71,7 +71,10 @@
             name="title"
             placeholder="Name"
             required
+            minlength="2"
+            maxlength="40"
           />
+          <span class="modal__input-error" id="modal-title-input-error"></span>
           <input
             type="text"
             class="modal__input"
@@ -79,7 +82,13 @@
             name="description"
             placeholder="Description"
             required
+            minlength="2"
+            maxlength="200"
           />
+          <span
+            class="modal__input-error"
+            id="modal-description-input-error"
+          ></span>
           <button type="submit" class="modal__button" aria-label="Save button">
             Save
           </button>
@@ -91,7 +100,7 @@
       <div class="modal__container">
         <button class="modal__close" id="card-edit-close"></button>
         <h2 class="modal__heading">New Place</h2>
-        <form class="modal__form" name="card-form">
+        <form class="modal__form" name="card-form" novalidate>
           <input
             type="text"
             class="modal__input"
@@ -99,16 +108,25 @@
             name="title"
             placeholder="Title"
             required
+            minlength="1"
+            maxlength="30"
           />
+          <span class="modal__input-error" id="modal-card-title-error"></span>
           <input
-            type="text"
+            type="url"
             class="modal__input"
             id="modal-card-link"
             name="link"
             placeholder="Image link"
             required
           />
-          <button type="submit" class="modal__button" aria-label="Save button">
+          <span class="modal__input-error" id="modal-card-link-error"></span>
+          <button
+            type="submit"
+            class="modal__button modal__button_disabled"
+            aria-label="Save button"
+            disabled
+          >
             Save
           </button>
         </form>
@@ -146,5 +164,6 @@
       </li>
     </template>
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validation.js" defer></script>
   </body>
 </html>
