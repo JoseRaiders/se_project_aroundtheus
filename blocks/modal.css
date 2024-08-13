@@ -23,10 +23,11 @@
 .modal__container {
   position: relative;
   width: 430px;
+  max-height: 330px;
   background-color: #fff;
   margin: auto;
   border-radius: 10px;
-  padding: 36px;
+  padding: 34px 36px 36px;
   border: none;
   box-shadow: none;
   box-sizing: border-box;
@@ -71,7 +72,7 @@
   padding: 0 0 13px;
   color: #000;
   font-size: 14px;
-  line-height: 1.2;
+  line-height: 16px;
   font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
   text-overflow: ellipsis;
@@ -81,17 +82,14 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.modal_input:nth-child {
-  margin-top: 30px;
-}
-
 .modal__input-error {
   color: #ff0000;
+  padding-top: 3px;
   font-size: 12px;
+  line-height: 14px;
   font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
   text-align: left;
-  padding-top: 5px;
 }
 
 .modal__input_type_error {
@@ -108,7 +106,7 @@
 }
 
 .modal__button {
-  margin: 36px 0 0;
+  margin: 30px 0 0;
   padding: 0;
   background-color: #000;
   max-width: 100%;
@@ -159,6 +157,7 @@
   width: 100%;
   padding-top: 10px;
   margin: 0;
+  opacity: 20%;
 }
 
 .modal__close_image-preview {
@@ -189,7 +188,7 @@
     height: 26px;
     background-color: transparent;
     bottom: calc(100% + 20px);
-    left: calc(100% - 30px);
+    left: calc(100% - 35px);
     border: none;
     background-image: url(../images/mobile-close.svg);
     background-repeat: no-repeat;
