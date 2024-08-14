@@ -177,3 +177,32 @@ popups.forEach((popup) => {
     }
   });
 });
+
+// disable card modal submit button initially
+function disableSubmitButton(form) {
+  const button = form.querySelector(".modal__button");
+  button.disabled = true;
+  button.classList.add("modal__button_disabled");
+}
+
+function enableSubmitButton(form) {
+  const button = form.querySelector(".modal__button");
+  button.disabled = false;
+  button.classList.remove("modal__button_disabled");
+}
+
+// disable the button when the form opens
+newCardForm.addEventListener("reset", () => {
+  disableSubmitButton(newCardForm);
+});
+
+// listen for an input event based on form validity
+newCardForm.addEventListener("input", (event) => {
+  const form = event.currentTarget;
+
+  if (form.checkValidity()) {
+    enableSubmitButton(form);
+  } else {
+    disableSubmitButton(form);
+  }
+});
