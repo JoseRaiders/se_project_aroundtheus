@@ -162,9 +162,7 @@ imagePreviewModalClose.addEventListener("click", () =>
 // esc key function
 function handleEscClose(evt) {
   if (evt.key === "Escape" || evt.key === "Esc") {
-    document
-      .querySelectorAll(".modal_opened")
-      .forEach((modal) => closePopup(modal));
+    document.querySelectorAll(".modal_opened").forEach(closePopup);
   }
 }
 
