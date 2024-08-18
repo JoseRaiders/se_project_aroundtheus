@@ -82,6 +82,17 @@ function enableValidation(options) {
   });
 }
 
+// listen for an input event based on form validity
+newCardForm.addEventListener("input", (event) => {
+  const form = event.currentTarget;
+
+  if (form.checkValidity()) {
+    enableSubmitButton(form);
+  } else {
+    disableSubmitButton(form);
+  }
+});
+
 const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",

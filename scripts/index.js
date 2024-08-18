@@ -143,21 +143,21 @@ function handleAddCardFormSubmit(evt) {
 =============================================*/
 profileEditBtn.addEventListener("click", fillProfileForm);
 
-profileEditModalClose.addEventListener("click", () =>
-  closePopup(profileEditModal)
-);
+// profileEditModalClose.addEventListener("click", () =>
+//   closePopup(profileEditModal)
+// );
 
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 
 addNewCardBtn.addEventListener("click", () => openModal(cardModal));
 
-addNewCardClose.addEventListener("mousedown", () => closePopup(cardModal));
+// addNewCardClose.addEventListener("mousedown", () => closePopup(cardModal));
 
 newCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
-imagePreviewModalClose.addEventListener("click", () =>
-  closePopup(imagePreviewModal)
-);
+// imagePreviewModalClose.addEventListener("click", () =>
+//   closePopup(imagePreviewModal)
+// );
 
 // esc key function
 function handleEscClose(evt) {
@@ -172,7 +172,7 @@ popups.forEach((popup) => {
     if (evt.target.classList.contains("modal_opened")) {
       closePopup(popup);
     }
-    if (evt.target.classList.contains("modal_close")) {
+    if (evt.target.classList.contains("modal__close")) {
       closePopup(popup);
     }
   });
@@ -194,15 +194,4 @@ function enableSubmitButton(form) {
 // disable the button when the form opens
 newCardForm.addEventListener("reset", () => {
   disableSubmitButton(newCardForm);
-});
-
-// listen for an input event based on form validity
-newCardForm.addEventListener("input", (event) => {
-  const form = event.currentTarget;
-
-  if (form.checkValidity()) {
-    enableSubmitButton(form);
-  } else {
-    disableSubmitButton(form);
-  }
 });
