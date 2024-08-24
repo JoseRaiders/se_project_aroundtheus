@@ -101,6 +101,19 @@
   text-align: left;
 }
 
+.modal__input-error2 {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: #ff0000;
+  padding-top: 2px;
+  font-size: 12px;
+  line-height: 14px;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  text-align: left;
+}
+
 .modal__input_type_error {
   border-bottom-color: #ff0000;
 }
