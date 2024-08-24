@@ -68,6 +68,12 @@
   border: none;
 }
 
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
 .modal__input {
   padding: 0 0 13px;
   color: #000;
@@ -83,8 +89,11 @@
 }
 
 .modal__input-error {
+  position: absolute;
+  top: 35%;
+  left: 0;
   color: #ff0000;
-  padding-top: 3px;
+  padding-top: 2px;
   font-size: 12px;
   line-height: 14px;
   font-family: "Inter", Arial, sans-serif;
