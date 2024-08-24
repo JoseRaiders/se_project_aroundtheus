@@ -63,6 +63,9 @@ function setEventListeners(formElement, options) {
   const inputElements = [...formElement.querySelectorAll(inputSelector)];
   const submitButton = formElement.querySelector(options.submitButtonSelector);
 
+  // initial call to toggleButtonState to set the button state based on the initial input field states
+  toggleButtonState(inputElements, submitButton, options);
+
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", (evt) => {
       checkInputValidity(formElement, inputElement, options);
@@ -81,17 +84,6 @@ function enableValidation(options) {
     setEventListeners(formElement, options);
   });
 }
-
-// listen for an input event based on form validity
-newCardForm.addEventListener("input", (event) => {
-  const form = event.currentTarget;
-
-  if (form.checkValidity()) {
-    enableSubmitButton(form);
-  } else {
-    disableSubmitButton(form);
-  }
-});
 
 const config = {
   formSelector: ".modal__form",
