@@ -90,10 +90,12 @@ function closeModal(modal) {
 function fillProfileForm() {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
+  // reset the validation state when the modal is opened
+  editFormValidation.resetValidation();
   openModal(profileEditModal);
 }
 
-// Function to handle image preview
+// function to handle image preview
 function handleImageClick(link, name) {
   modalImage.src = link;
   modalImage.alt = name;
@@ -101,13 +103,14 @@ function handleImageClick(link, name) {
   openModal(imagePreviewModal);
 }
 
-// Refactored renderCard function using the Card class
+// refactored renderCard function using the Card class
 function renderCard(item, method = "prepend") {
   const card = new Card(item, "#card-template", handleImageClick);
   const cardElement = card.getView();
   cardListElement[method](cardElement);
 }
 
+// render initial cards
 initialCards.forEach((data) => {
   renderCard(data);
 });
@@ -129,6 +132,8 @@ function handleAddCardFormSubmit(evt) {
   renderCard({ name, link });
   closeModal(cardModal);
   evt.target.reset();
+  // reset validation after submitting
+  addFormValidation.resetValidation();
 }
 
 /*=============================================
@@ -136,7 +141,11 @@ function handleAddCardFormSubmit(evt) {
 =============================================*/
 profileEditBtn.addEventListener("click", fillProfileForm);
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
-addNewCardBtn.addEventListener("click", () => openModal(cardModal));
+// reset validation before opening the card modal
+addNewCardBtn.addEventListener("click", () => {
+  addFormValidation.resetValidation();
+  openModal(cardModal);
+});
 newCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
 // esc key function
@@ -158,8 +167,8 @@ popups.forEach((popup) => {
   });
 });
 
-newCardForm.addEventListener("reset", () => {
-  const button = newCardForm.querySelector(".modal__button");
-  button.disabled = true;
-  button.classList.add("modal__button_disabled");
-});
+// newCardForm.addEventListener("reset", () => {
+//   const button = newCardForm.querySelector(".modal__button");
+//   button.disabled = true;
+//   button.classList.add("modal__button_disabled");
+// });

@@ -12,7 +12,6 @@ export default class FormValidator {
   /*============================================
   =                  Methods                   =
   =============================================*/
-
   _showInputError(inputElement) {
     const errorMessageElement = this._formElement.querySelector(
       `#${inputElement.id}-error`
@@ -81,5 +80,16 @@ export default class FormValidator {
       evt.preventDefault();
     });
     this._setEventListeners();
+  }
+
+  // special resetValidation method
+  resetValidation() {
+    // toggle the submit button state
+    this._toggleButtonState();
+
+    // clear errors in the form
+    this._inputElements.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
   }
 }
