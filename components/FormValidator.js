@@ -92,4 +92,10 @@ export default class FormValidator {
       this._hideInputError(inputElement);
     });
   }
+
+  // disableButton method
+  disableButton() {
+    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._submitButton.disabled = true;
+  }
 }
