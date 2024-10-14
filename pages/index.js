@@ -143,7 +143,6 @@ profileEditBtn.addEventListener("click", fillProfileForm);
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 // reset validation before opening the card modal
 addNewCardBtn.addEventListener("click", () => {
-  addFormValidation.resetValidation();
   openModal(cardModal);
 });
 newCardForm.addEventListener("submit", handleAddCardFormSubmit);
