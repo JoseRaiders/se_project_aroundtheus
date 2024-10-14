@@ -132,8 +132,8 @@ function handleAddCardFormSubmit(evt) {
   renderCard({ name, link });
   closeModal(cardModal);
   evt.target.reset();
-  // reset validation after submitting
-  addFormValidation.resetValidation();
+  // disable submit button after adding a card
+  addFormValidation.disableButton();
 }
 
 /*=============================================
