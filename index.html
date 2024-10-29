@@ -14,14 +14,14 @@
     />
     <meta name="author" content="Anuska Jose" />
     <title>Around The U.S.</title>
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body>
     <div class="page">
       <div class="page__content">
         <header class="header page__section">
+          <!-- img relative path for webpack -->
           <img
-            src="./images/logo.svg"
+            src="<%=require('./src/images/logo.svg')%>"
             alt="Around The U.S. logo"
             class="header__logo"
           />
@@ -30,7 +30,7 @@
           <section class="profile page__section">
             <img
               class="profile__image"
-              src="./images/jacques-cousteau.jpg"
+              src="<%=require('./src/images/jacques-cousteau.jpg')%>"
               alt="Avatar"
             />
             <div class="profile__info">
@@ -171,7 +171,8 @@
         </div>
       </li>
     </template>
-    <script src="./pages/index.js" type="module" defer></script>
+    <!-- no longer needed as this is done by webpack: 
+     <script src="./pages/index.js" type="module" defer></script> -->
     <!-- <script src="./components/validation.js" defer></script> -->
   </body>
 </html>
