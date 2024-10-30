@@ -1,3 +1,4 @@
+// creates the cards with the image and title
 export default class Card {
   constructor(card, cardSelector, handleImageClick) {
     this._name = card.name;

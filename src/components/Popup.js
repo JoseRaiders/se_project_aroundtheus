@@ -4,14 +4,14 @@ export default class Popup {
   }
 
   open() {
-    // open popup
+    // open popup & detect the esc key to close popup
     this._popupElement.classList.add("modal_opened");
     document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
-    // close popup
-    this_popupElement.classList.remove("modal_opened");
+    // close popup & remove esc key listener
+    this._popupElement.classList.remove("modal_opened");
     document.removeEventListener("keydown", this._handleEscClose);
   }
 
@@ -23,7 +23,8 @@ export default class Popup {
   }
 
   setEventListeners() {
-    // Add a click event listener to close the popup
+    // add a mousedown event listener to close the popup
+    // if occurs outside the popup or on the close icon
     this._popupElement.addEventListener("mousedown", (evt) => {
       if (
         evt.target.classList.contains("modal_opened") ||

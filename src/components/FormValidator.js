@@ -1,3 +1,4 @@
+// checks that the info typed in forms are correct
 export default class FormValidator {
   constructor(settings, formElement) {
     this._inputSelector = settings.inputSelector;

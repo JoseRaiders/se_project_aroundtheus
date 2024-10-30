@@ -1,5 +1,6 @@
 import Popup from "./Popup.js";
 
+// handles actions for the profile popup
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super({ popupSelector });
@@ -8,11 +9,13 @@ export default class PopupWithForm extends Popup {
     this._inputList = this._popupForm.querySelectorAll(".modal__input");
   }
 
+  // reset to clear the popup form then close popup
   close() {
     this._popupForm.reset();
     super.close();
   }
 
+  // collect & return form input values
   _getInputValues() {
     const inputValues = {};
     this._inputList.forEach((input) => {
@@ -21,6 +24,7 @@ export default class PopupWithForm extends Popup {
     return inputValues;
   }
 
+  // handle outside click closure & form submission
   setEventListeners() {
     super.setEventListeners();
     this._popupForm.addEventListener("submit", (evt) => {
