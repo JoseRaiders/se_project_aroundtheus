@@ -12,10 +12,9 @@ The project is made so that all elements render responsive on popular devices sc
 - Grid
 - Media Queries
 - Figma
-- git add
-- git commit
-- git push
-- Deploy to my personal page on GitHub
+- git commands
+- JavaScript Modules and Classes
+- Node.js, Webpack, NPM, Babel
 
 ## Figma
 
@@ -25,4 +24,3 @@ The project is made so that all elements render responsive on popular devices sc
 
 - [GitHub Page to this project](https://joseraiders.github.io/se_project_aroundtheus/)
 - [Project recording](https://app.screencastify.com/v3/watch/SbWKi3YebdRlaJvz3ErB)
-

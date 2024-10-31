@@ -8,44 +8,7 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
-
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
-
-/*=============================================
-=         Form Validation Settings            =
-=============================================*/
-const settings = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
+import { initialCards, settings } from "../utils/constants.js";
 
 /*=============================================
 =                  Elements                   =
@@ -99,16 +62,6 @@ addFormValidation.enableValidation(); // check the form adding new cards
 /*=============================================
 =                 Functions                   =
 =============================================*/
-// function openModal(modal) {
-//   modal.classList.add("modal_opened");
-//   document.addEventListener("keydown", handleEscClose);
-// }
-
-// function closeModal(modal) {
-//   modal.classList.remove("modal_opened");
-//   document.removeEventListener("keydown", handleEscClose);
-// }
-
 function handleProfileFormSubmit(inputValues) {
   userInfo.setUserInfo({
     name: inputValues.title,
@@ -119,14 +72,6 @@ function handleProfileFormSubmit(inputValues) {
   // profileDescription.textContent = inputValues.description;
   // closeModal(profileEditModal);
 }
-
-// function fillProfileForm() {
-//   profileTitleInput.value = profileTitle.textContent;
-//   profileDescriptionInput.value = profileDescription.textContent;
-//   // reset the validation state when the modal is opened
-//   editFormValidation.resetValidation();
-//   openModal(profileEditModal);
-// }
 
 /*=============================================
 =            Popup and Form Instances         =
@@ -148,6 +93,7 @@ addCardPopup.setEventListeners();
 =            Handle Image Preview             =
 =============================================*/
 const previewImagePopup = new PopupWithImage("#modal-image-preview");
+previewImagePopup.setEventListeners();
 
 function handleImageClick(link, name) {
   previewImagePopup.open({ link, name });
@@ -181,8 +127,6 @@ function handleAddCardFormSubmit(inputValues) {
 /*=============================================
 =              Event Listeners                =
 =============================================*/
-// profileEditBtn.addEventListener("click", fillProfileForm);
-
 profileEditBtn.addEventListener("click", () => {
   const currentUserInfo = userInfo.getUserInfo();
   profileTitleInput.value = currentUserInfo.name;
@@ -192,23 +136,8 @@ profileEditBtn.addEventListener("click", () => {
   profilePopup.open();
 });
 
-// profileEditForm.addEventListener("submit", handleProfileFormSubmit);
-
 // reset validation before opening the card modal
 addNewCardBtn.addEventListener("click", () => {
-  // openModal(cardModal);
   addCardPopup.open();
   addFormValidation.resetValidation();
 });
-
-// overlay event listener
-// popups.forEach((popup) => {
-//   popup.addEventListener("mousedown", (evt) => {
-//     if (evt.target.classList.contains("modal_opened")) {
-//       closeModal(popup);
-//     }
-//     if (evt.target.classList.contains("modal__close")) {
-//       closeModal(popup);
-//     }
-//   });
-// });

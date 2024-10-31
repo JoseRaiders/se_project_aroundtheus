@@ -19,9 +19,10 @@ export default class Popup {
   _handleEscClose(evt) {
     // listens for esc key
     if (evt.key === "Escape" || evt.key === "Esc") {
-      document.querySelectorAll(".modal_opened").forEach((modal) => {
-        modal.classList.remove("modal_opened");
-      });
+      // document.querySelectorAll(".modal_opened").forEach((modal) => {
+      //   modal.classList.remove("modal_opened");
+      // });
+      this.close();
     }
   }
 
