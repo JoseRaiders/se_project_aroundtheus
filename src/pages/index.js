@@ -61,7 +61,7 @@ const profileDescriptionInput = document.querySelector(
 const profileEditForm = document.forms["profile-form"];
 const cardListElement = document.querySelector(".cards__list");
 const addNewCardBtn = document.querySelector(".profile__add-button");
-const cardModal = document.querySelector("#add-card-modal");
+// const cardModal = document.querySelector("#add-card-modal");
 const newCardForm = document.forms["card-form"];
 // const cardTitleInput = newCardForm.querySelector("#modal-card-title");
 // const cardLinkInput = newCardForm.querySelector("#modal-card-link");
@@ -99,15 +99,15 @@ addFormValidation.enableValidation(); // check the form adding new cards
 /*=============================================
 =                 Functions                   =
 =============================================*/
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", handleEscClose);
-}
+// function openModal(modal) {
+//   modal.classList.add("modal_opened");
+//   document.addEventListener("keydown", handleEscClose);
+// }
 
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleEscClose);
-}
+// function closeModal(modal) {
+//   modal.classList.remove("modal_opened");
+//   document.removeEventListener("keydown", handleEscClose);
+// }
 
 function handleProfileFormSubmit(inputValues) {
   userInfo.setUserInfo({
@@ -169,11 +169,9 @@ function renderCard(item, method = "prepend") {
 =              Event Handlers                 =
 =============================================*/
 function handleAddCardFormSubmit(inputValues) {
-  console.log("Form input values:", inputValues);
-  const name = inputValues.name;
+  const name = inputValues.title;
   const link = inputValues.link;
   renderCard({ name, link });
-  // closeModal(cardModal);
   addCardPopup.close();
   newCardForm.reset();
   // disable submit button after adding a card
@@ -203,23 +201,14 @@ addNewCardBtn.addEventListener("click", () => {
   addFormValidation.resetValidation();
 });
 
-newCardForm.addEventListener("submit", handleAddCardFormSubmit);
-
-// esc key function
-function handleEscClose(evt) {
-  if (evt.key === "Escape" || evt.key === "Esc") {
-    document.querySelectorAll(".modal_opened").forEach(closeModal);
-  }
-}
-
 // overlay event listener
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("modal_opened")) {
-      closeModal(popup);
-    }
-    if (evt.target.classList.contains("modal__close")) {
-      closeModal(popup);
-    }
-  });
-});
+// popups.forEach((popup) => {
+//   popup.addEventListener("mousedown", (evt) => {
+//     if (evt.target.classList.contains("modal_opened")) {
+//       closeModal(popup);
+//     }
+//     if (evt.target.classList.contains("modal__close")) {
+//       closeModal(popup);
+//     }
+//   });
+// });
