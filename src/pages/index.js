@@ -9,11 +9,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  descriptionSelector: ".profile__description",
-});
-
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -56,9 +51,9 @@ const settings = {
 =                  Elements                   =
 =============================================*/
 const profileEditBtn = document.querySelector("#profile-edit-button");
-const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
+// const profileEditModal = document.querySelector("#profile-edit-modal");
+// const profileTitle = document.querySelector(".profile__title");
+// const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#modal-title-input");
 const profileDescriptionInput = document.querySelector(
   "#modal-description-input"
@@ -68,15 +63,15 @@ const cardListElement = document.querySelector(".cards__list");
 const addNewCardBtn = document.querySelector(".profile__add-button");
 const cardModal = document.querySelector("#add-card-modal");
 const newCardForm = document.forms["card-form"];
-const cardTitleInput = newCardForm.querySelector("#modal-card-title");
-const cardLinkInput = newCardForm.querySelector("#modal-card-link");
-const imagePreviewModal = document.querySelector("#modal-image-preview");
-const modalImage = imagePreviewModal.querySelector(".modal__image-preview");
-const modalTitle = imagePreviewModal.querySelector(".modal__image-title");
+// const cardTitleInput = newCardForm.querySelector("#modal-card-title");
+// const cardLinkInput = newCardForm.querySelector("#modal-card-link");
+// const imagePreviewModal = document.querySelector("#modal-image-preview");
+// const modalImage = imagePreviewModal.querySelector(".modal__image-preview");
+// const modalTitle = imagePreviewModal.querySelector(".modal__image-title");
 const popups = document.querySelectorAll(".modal");
 
 /*=============================================
-=               Section and Popup             =
+=            Section and UserInfo             =
 =============================================*/
 const section = new Section(
   {
@@ -85,8 +80,12 @@ const section = new Section(
   },
   ".cards__list"
 );
-
 section.renderItems();
+
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  descriptionSelector: ".profile__description",
+});
 
 /*=============================================
 =             Form Validation                 =
@@ -110,22 +109,7 @@ function closeModal(modal) {
   document.removeEventListener("keydown", handleEscClose);
 }
 
-function fillProfileForm() {
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
-  // reset the validation state when the modal is opened
-  editFormValidation.resetValidation();
-  openModal(profileEditModal);
-}
-
-const profilePopup = new PopupWithForm(
-  "#profile-edit-modal",
-  handleProfileFormSubmit
-);
-profilePopup.setEventListeners();
-
 function handleProfileFormSubmit(inputValues) {
-  console.log("Submitted values:", inputValues);
   userInfo.setUserInfo({
     name: inputValues.title,
     description: inputValues.description,
@@ -136,6 +120,30 @@ function handleProfileFormSubmit(inputValues) {
   // closeModal(profileEditModal);
 }
 
+// function fillProfileForm() {
+//   profileTitleInput.value = profileTitle.textContent;
+//   profileDescriptionInput.value = profileDescription.textContent;
+//   // reset the validation state when the modal is opened
+//   editFormValidation.resetValidation();
+//   openModal(profileEditModal);
+// }
+
+/*=============================================
+=            Popup and Form Instances         =
+=============================================*/
+
+const profilePopup = new PopupWithForm(
+  "#profile-edit-modal",
+  handleProfileFormSubmit
+);
+profilePopup.setEventListeners();
+
+const addCardPopup = new PopupWithForm(
+  "#add-card-modal",
+  handleAddCardFormSubmit
+);
+addCardPopup.setEventListeners();
+
 /*=============================================
 =            Handle Image Preview             =
 =============================================*/
@@ -143,10 +151,6 @@ const previewImagePopup = new PopupWithImage("#modal-image-preview");
 
 function handleImageClick(link, name) {
   previewImagePopup.open({ link, name });
-  // modalImage.src = link;
-  // modalImage.alt = name;
-  // modalTitle.textContent = name;
-  // openModal(imagePreviewModal);
 }
 
 // refactored renderCard function using the Card class
@@ -164,13 +168,14 @@ function renderCard(item, method = "prepend") {
 /*=============================================
 =              Event Handlers                 =
 =============================================*/
-function handleAddCardFormSubmit(evt) {
-  evt.preventDefault();
-  const name = cardTitleInput.value;
-  const link = cardLinkInput.value;
+function handleAddCardFormSubmit(inputValues) {
+  console.log("Form input values:", inputValues);
+  const name = inputValues.name;
+  const link = inputValues.link;
   renderCard({ name, link });
-  closeModal(cardModal);
-  evt.target.reset();
+  // closeModal(cardModal);
+  addCardPopup.close();
+  newCardForm.reset();
   // disable submit button after adding a card
   addFormValidation.disableButton();
 }
@@ -178,7 +183,8 @@ function handleAddCardFormSubmit(evt) {
 /*=============================================
 =              Event Listeners                =
 =============================================*/
-profileEditBtn.addEventListener("click", fillProfileForm);
+// profileEditBtn.addEventListener("click", fillProfileForm);
+
 profileEditBtn.addEventListener("click", () => {
   const currentUserInfo = userInfo.getUserInfo();
   profileTitleInput.value = currentUserInfo.name;
@@ -188,10 +194,13 @@ profileEditBtn.addEventListener("click", () => {
   profilePopup.open();
 });
 
-profileEditForm.addEventListener("submit", handleProfileFormSubmit);
+// profileEditForm.addEventListener("submit", handleProfileFormSubmit);
+
 // reset validation before opening the card modal
 addNewCardBtn.addEventListener("click", () => {
-  openModal(cardModal);
+  // openModal(cardModal);
+  addCardPopup.open();
+  addFormValidation.resetValidation();
 });
 
 newCardForm.addEventListener("submit", handleAddCardFormSubmit);
