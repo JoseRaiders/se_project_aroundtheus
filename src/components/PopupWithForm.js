@@ -9,9 +9,20 @@ export default class PopupWithForm extends Popup {
     this._inputList = this._popupForm.querySelectorAll(".modal__input");
   }
 
-  // reset to clear the popup form then close popup
+  // method to populate input values based on provided data
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      input.value = data[input.name];
+    });
+  }
+
+  // returns the form element
+  getForm() {
+    return this._popupForm;
+  }
+
+  // close popup
   close() {
-    this._popupForm.reset();
     super.close();
   }
 
@@ -30,6 +41,7 @@ export default class PopupWithForm extends Popup {
     this._popupForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
+      this._popupForm.reset(); // reset from input after successful form submission
       this.close();
     });
   }

@@ -64,7 +64,7 @@ addFormValidation.enableValidation(); // check the form adding new cards
 =============================================*/
 function handleProfileFormSubmit(inputValues) {
   userInfo.setUserInfo({
-    name: inputValues.title,
+    title: inputValues.title,
     description: inputValues.description,
   });
   profilePopup.close();
@@ -88,6 +88,7 @@ const addCardPopup = new PopupWithForm(
   handleAddCardFormSubmit
 );
 addCardPopup.setEventListeners();
+addCardPopup.getForm();
 
 /*=============================================
 =            Handle Image Preview             =
@@ -128,9 +129,10 @@ function handleAddCardFormSubmit(inputValues) {
 =              Event Listeners                =
 =============================================*/
 profileEditBtn.addEventListener("click", () => {
-  const currentUserInfo = userInfo.getUserInfo();
-  profileTitleInput.value = currentUserInfo.name;
-  profileDescriptionInput.value = currentUserInfo.description;
+  const currentUserInfo = userInfo.getUserInfo(); // { title: 'Profile Title', description: 'Profile Description' }
+  profilePopup.setInputValues(currentUserInfo); // populate form inputs with user data
+  // profileTitleInput.value = currentUserInfo.name;
+  // profileDescriptionInput.value = currentUserInfo.description;
   // profileTitleInput.value = profileTitle.textContent;
   // profileDescriptionInput.value = profileDescription.textContent;
   profilePopup.open();
@@ -139,5 +141,4 @@ profileEditBtn.addEventListener("click", () => {
 // reset validation before opening the card modal
 addNewCardBtn.addEventListener("click", () => {
   addCardPopup.open();
-  addFormValidation.resetValidation();
 });
