@@ -14,6 +14,10 @@ import { initialCards, settings } from "../utils/constants.js";
 =                  Elements                   =
 =============================================*/
 const profileEditBtn = document.querySelector("#profile-edit-button");
+const profileEditForm = document.forms["profile-form"];
+const cardListElement = document.querySelector(".cards__list");
+const addNewCardBtn = document.querySelector(".profile__add-button");
+const newCardForm = document.forms["card-form"];
 // const profileEditModal = document.querySelector("#profile-edit-modal");
 // const profileTitle = document.querySelector(".profile__title");
 // const profileDescription = document.querySelector(".profile__description");
@@ -21,11 +25,7 @@ const profileEditBtn = document.querySelector("#profile-edit-button");
 // const profileDescriptionInput = document.querySelector(
 //   "#modal-description-input"
 // );
-const profileEditForm = document.forms["profile-form"];
-const cardListElement = document.querySelector(".cards__list");
-const addNewCardBtn = document.querySelector(".profile__add-button");
 // const cardModal = document.querySelector("#add-card-modal");
-const newCardForm = document.forms["card-form"];
 // const cardTitleInput = newCardForm.querySelector("#modal-card-title");
 // const cardLinkInput = newCardForm.querySelector("#modal-card-link");
 // const imagePreviewModal = document.querySelector("#modal-image-preview");
@@ -68,15 +68,11 @@ function handleProfileFormSubmit(inputValues) {
     description: inputValues.description,
   });
   profilePopup.close();
-  // profileTitle.textContent = inputValues.title;
-  // profileDescription.textContent = inputValues.description;
-  // closeModal(profileEditModal);
 }
 
 /*=============================================
 =            Popup and Form Instances         =
 =============================================*/
-
 const profilePopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileFormSubmit
@@ -107,11 +103,6 @@ function renderCard(item, method = "prepend") {
   cardListElement[method](cardElement);
 }
 
-// render initial cards
-// initialCards.forEach((data) => {
-//   renderCard(data);
-// });
-
 /*=============================================
 =              Event Handlers                 =
 =============================================*/
@@ -133,8 +124,7 @@ profileEditBtn.addEventListener("click", () => {
   profilePopup.setInputValues(currentUserInfo); // populate form inputs with user data
   // profileTitleInput.value = currentUserInfo.name;
   // profileDescriptionInput.value = currentUserInfo.description;
-  // profileTitleInput.value = profileTitle.textContent;
-  // profileDescriptionInput.value = profileDescription.textContent;
+  editFormValidation.resetValidation(); // clear any validation errors before opening
   profilePopup.open();
 });
 
