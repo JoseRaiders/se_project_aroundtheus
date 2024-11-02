@@ -17,10 +17,10 @@ const profileEditBtn = document.querySelector("#profile-edit-button");
 // const profileEditModal = document.querySelector("#profile-edit-modal");
 // const profileTitle = document.querySelector(".profile__title");
 // const profileDescription = document.querySelector(".profile__description");
-const profileTitleInput = document.querySelector("#modal-title-input");
-const profileDescriptionInput = document.querySelector(
-  "#modal-description-input"
-);
+// const profileTitleInput = document.querySelector("#modal-title-input");
+// const profileDescriptionInput = document.querySelector(
+//   "#modal-description-input"
+// );
 const profileEditForm = document.forms["profile-form"];
 const cardListElement = document.querySelector(".cards__list");
 const addNewCardBtn = document.querySelector(".profile__add-button");
@@ -31,7 +31,7 @@ const newCardForm = document.forms["card-form"];
 // const imagePreviewModal = document.querySelector("#modal-image-preview");
 // const modalImage = imagePreviewModal.querySelector(".modal__image-preview");
 // const modalTitle = imagePreviewModal.querySelector(".modal__image-title");
-const popups = document.querySelectorAll(".modal");
+// const popups = document.querySelectorAll(".modal");
 
 /*=============================================
 =            Section and UserInfo             =
