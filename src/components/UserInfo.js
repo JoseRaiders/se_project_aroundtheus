@@ -9,16 +9,16 @@ export default class UserInfo {
   getUserInfo() {
     // info about the user
     return {
-      title: this._nameElement.textContent,
-      description: this._descriptionElement.textContent,
+      name: this._nameElement.textContent,
+      about: this._descriptionElement.textContent,
       avatar: this._avatarElement.src,
     };
   }
 
-  setUserInfo({ title, description, avatar }) {
+  setUserInfo({ name, about, avatar }) {
     // add new user data
-    this._nameElement.textContent = title;
-    this._descriptionElement.textContent = description;
+    this._nameElement.textContent = name;
+    this._descriptionElement.textContent = about;
     this._avatarElement.src = avatar;
   }
 }

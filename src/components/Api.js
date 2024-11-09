@@ -37,6 +37,22 @@ export default class Api {
       .catch(this._handleError);
   }
 
+  setUserInfo({ name, description }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: this._headers.authorization,
+      },
+      body: JSON.stringify({
+        name,
+        description,
+      }),
+    })
+      .then(this._handleResponse)
+      .catch(this._handleError);
+  }
+
   _handleResponse(res) {
     if (res.ok) {
       return res.json();

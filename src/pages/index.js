@@ -73,6 +73,28 @@ api
   })
   .catch((err) => console.error("Error getting user info:", err));
 
+function handleProfileFormSubmit(inputValues) {
+  userInfo.setUserInfo({
+    title: inputValues.title,
+    description: inputValues.description,
+  });
+
+  api
+    .setUserInfo({ name: title, about: description })
+    .then((data) => {
+      // after updating, reflect the changes in the UI
+      userInfo.setUserInfo({
+        name: data.name,
+        about: data.about,
+        avatar: data.avatar,
+      });
+      profilePopup.close();
+    })
+    .catch((err) => {
+      console.error("Error updating user info:", err);
+    });
+}
+
 /*=============================================
 =             Form Validation                 =
 =============================================*/
@@ -81,17 +103,6 @@ const addFormValidation = new FormValidator(settings, newCardForm);
 
 editFormValidation.enableValidation(); // check the profile form
 addFormValidation.enableValidation(); // check the form adding new cards
-
-/*=============================================
-=                 Functions                   =
-=============================================*/
-function handleProfileFormSubmit(inputValues) {
-  userInfo.setUserInfo({
-    title: inputValues.title,
-    description: inputValues.description,
-  });
-  profilePopup.close();
-}
 
 /*=============================================
 =            Popup and Form Instances         =
@@ -108,6 +119,25 @@ const addCardPopup = new PopupWithForm(
 );
 addCardPopup.setEventListeners();
 addCardPopup.getForm();
+
+function handleAddCardFormSubmit(inputValues) {
+  const name = inputValues.title;
+  const link = inputValues.link;
+
+  // send new card to the server
+  api
+    .addCard({ name, link })
+    .then((newCard) => {
+      renderCard(newCard);
+      addCardPopup.close();
+      newCardForm.reset();
+      // disable submit button after adding a card
+      addFormValidation.disableButton();
+    })
+    .catch((err) => {
+      console.error("Error adding new card:", err);
+    });
+}
 
 /*=============================================
 =            Handle Image Preview             =
@@ -140,35 +170,11 @@ api
   });
 
 /*=============================================
-=              Event Handlers                 =
-=============================================*/
-function handleAddCardFormSubmit(inputValues) {
-  const name = inputValues.title;
-  const link = inputValues.link;
-
-  // send new card to the server
-  api
-    .addCard({ name, link })
-    .then((newCard) => {
-      renderCard(newCard);
-      addCardPopup.close();
-      newCardForm.reset();
-      // disable submit button after adding a card
-      addFormValidation.disableButton();
-    })
-    .catch((err) => {
-      console.error("Error adding new card:", err);
-    });
-}
-
-/*=============================================
 =              Event Listeners                =
 =============================================*/
 profileEditBtn.addEventListener("click", () => {
-  const currentUserInfo = userInfo.getUserInfo(); // { title: 'Profile Title', description: 'Profile Description' }
+  const currentUserInfo = userInfo.getUserInfo(); // { name: 'Profile Name', about: 'Profile Description' }
   profilePopup.setInputValues(currentUserInfo); // populate form inputs with user data
-  // profileTitleInput.value = currentUserInfo.name;
-  // profileDescriptionInput.value = currentUserInfo.description;
   editFormValidation.resetValidation(); // clear any validation errors before opening
   profilePopup.open();
 });

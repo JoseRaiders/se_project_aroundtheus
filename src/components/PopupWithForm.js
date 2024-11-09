@@ -12,7 +12,9 @@ export default class PopupWithForm extends Popup {
   // method to populate input values based on provided data
   setInputValues(data) {
     this._inputList.forEach((input) => {
-      input.value = data[input.name];
+      if (data[input.name]) {
+        input.value = data[input.name];
+      }
     });
   }
 
