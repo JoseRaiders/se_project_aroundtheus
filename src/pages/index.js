@@ -9,6 +9,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, settings } from "../utils/constants.js";
+import Api from "../components/Api.js";
 
 /*=============================================
 =                  Elements                   =
@@ -34,6 +35,17 @@ const newCardForm = document.forms["card-form"];
 // const popups = document.querySelectorAll(".modal");
 
 /*=============================================
+=                     API                     =
+=============================================*/
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "6df1f8c9-5485-4c2c-a9bb-76c2820402ab",
+    "Content-Type": "application/json",
+  },
+});
+
+/*=============================================
 =            Section and UserInfo             =
 =============================================*/
 const section = new Section(
@@ -49,6 +61,17 @@ const userInfo = new UserInfo({
   nameSelector: ".profile__title",
   descriptionSelector: ".profile__description",
 });
+
+api
+  .getUserInfo()
+  .then((data) => {
+    userInfo.setUserInfo({
+      name: data.name,
+      about: data.about,
+      avatar: data.avatar,
+    });
+  })
+  .catch((err) => console.error("Error getting user info:", err));
 
 /*=============================================
 =             Form Validation                 =
@@ -103,17 +126,39 @@ function renderCard(item, method = "prepend") {
   cardListElement[method](cardElement);
 }
 
+api
+  .getInitialCards()
+  .then((cards) => {
+    // display cards in the DOM
+    cards.forEach((card) => {
+      // render each card (assuming a renderCard function)
+      renderCard(card);
+    });
+  })
+  .catch((err) => {
+    console.error("Error getting initial cards:", err);
+  });
+
 /*=============================================
 =              Event Handlers                 =
 =============================================*/
 function handleAddCardFormSubmit(inputValues) {
   const name = inputValues.title;
   const link = inputValues.link;
-  renderCard({ name, link });
-  addCardPopup.close();
-  newCardForm.reset();
-  // disable submit button after adding a card
-  addFormValidation.disableButton();
+
+  // send new card to the server
+  api
+    .addCard({ name, link })
+    .then((newCard) => {
+      renderCard(newCard);
+      addCardPopup.close();
+      newCardForm.reset();
+      // disable submit button after adding a card
+      addFormValidation.disableButton();
+    })
+    .catch((err) => {
+      console.error("Error adding new card:", err);
+    });
 }
 
 /*=============================================
