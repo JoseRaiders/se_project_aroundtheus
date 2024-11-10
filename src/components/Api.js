@@ -11,7 +11,7 @@ export default class Api {
   }
 
   setUserInfo({ name, about }) {
-    return this._request(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       body: JSON.stringify({
         name: name,
