@@ -40,7 +40,7 @@ const newCardForm = document.forms["card-form"];
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "6df1f8c9-5485-4c2c-a9bb-76c2820402ab",
+    authorization: "abab587d-903d-4fa7-90c2-ee61a34ba949",
     "Content-Type": "application/json",
   },
 });
@@ -62,36 +62,31 @@ const userInfo = new UserInfo({
   descriptionSelector: ".profile__description",
 });
 
-api
-  .getUserInfo()
-  .then((data) => {
-    userInfo.setUserInfo({
-      name: data.name,
-      about: data.about,
-      avatar: data.avatar,
-    });
-  })
-  .catch((err) => console.error("Error getting user info:", err));
+// retrieve use info
+api.getUserInfo().then((data) => {
+  userInfo.setUserInfo({
+    name: data.name,
+    about: data.about,
+    // avatar: data.avatar,
+  });
+});
 
 function handleProfileFormSubmit(inputValues) {
   userInfo.setUserInfo({
-    title: inputValues.title,
-    description: inputValues.description,
+    name: inputValues.name,
+    about: inputValues.about,
   });
 
   api
-    .setUserInfo({ name: title, about: description })
+    .setUserInfo({ name: inputValues.name, about: inputValues.about })
     .then((data) => {
       // after updating, reflect the changes in the UI
       userInfo.setUserInfo({
         name: data.name,
         about: data.about,
-        avatar: data.avatar,
+        // avatar: data.avatar,
       });
       profilePopup.close();
-    })
-    .catch((err) => {
-      console.error("Error updating user info:", err);
     });
 }
 
@@ -125,18 +120,13 @@ function handleAddCardFormSubmit(inputValues) {
   const link = inputValues.link;
 
   // send new card to the server
-  api
-    .addCard({ name, link })
-    .then((newCard) => {
-      renderCard(newCard);
-      addCardPopup.close();
-      newCardForm.reset();
-      // disable submit button after adding a card
-      addFormValidation.disableButton();
-    })
-    .catch((err) => {
-      console.error("Error adding new card:", err);
-    });
+  api.addCard({ name, link }).then((newCard) => {
+    renderCard(newCard);
+    addCardPopup.close();
+    newCardForm.reset();
+    // disable submit button after adding a card
+    addFormValidation.disableButton();
+  });
 }
 
 /*=============================================
@@ -156,18 +146,14 @@ function renderCard(item, method = "prepend") {
   cardListElement[method](cardElement);
 }
 
-api
-  .getInitialCards()
-  .then((cards) => {
-    // display cards in the DOM
-    cards.forEach((card) => {
-      // render each card (assuming a renderCard function)
-      renderCard(card);
-    });
-  })
-  .catch((err) => {
-    console.error("Error getting initial cards:", err);
+// retrieve initial cards
+api.getInitialCards().then((cards) => {
+  // display cards in the DOM
+  cards.forEach((card) => {
+    // render each card (assuming a renderCard function)
+    renderCard(card);
   });
+});
 
 /*=============================================
 =              Event Listeners                =

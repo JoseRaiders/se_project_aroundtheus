@@ -8,49 +8,30 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
-    })
-      .then(this._handleResponse)
-      .catch(this._handleError);
+    }).then(this._handleResponse);
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
-    })
-      .then(this._handleResponse)
-      .catch(this._handleError);
+    }).then(this._handleResponse);
   }
 
   addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        link,
-      }),
-    })
-      .then(this._handleResponse)
-      .catch(this._handleError);
+      headers: this._headers,
+      body: JSON.stringify({ name, link }),
+    }).then(this._handleResponse);
   }
 
-  setUserInfo({ name, description }) {
+  setUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: this._headers.authorization,
-      },
-      body: JSON.stringify({
-        name,
-        description,
-      }),
-    })
-      .then(this._handleResponse)
-      .catch(this._handleError);
+      headers: this._headers,
+      body: JSON.stringify({ name, about }),
+    }).then(this._handleResponse);
   }
 
   _handleResponse(res) {
@@ -59,11 +40,5 @@ export default class Api {
     }
     // if the server returns an error, reject the promise
     return Promise.reject(`Error: ${res.status}`);
-  }
-
-  // log the error to the console
-  _handleError(err) {
-    console.error("API error:", err);
-    throw err;
   }
 }
