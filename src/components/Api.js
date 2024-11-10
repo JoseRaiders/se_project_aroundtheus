@@ -7,7 +7,16 @@ export default class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
-      headers: this._headers,
+    }).then(this._handleResponse);
+  }
+
+  setUserInfo({ name, about }) {
+    return this._request(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        name: name,
+        about: about,
+      }),
     }).then(this._handleResponse);
   }
 
@@ -23,14 +32,6 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({ name, link }),
-    }).then(this._handleResponse);
-  }
-
-  setUserInfo({ name, about }) {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({ name, about }),
     }).then(this._handleResponse);
   }
 

@@ -64,6 +64,7 @@ const userInfo = new UserInfo({
 
 // retrieve use info
 api.getUserInfo().then((data) => {
+  console.log(data);
   userInfo.setUserInfo({
     name: data.name,
     about: data.about,
