@@ -155,9 +155,10 @@ function renderCard(item, method = "prepend") {
     "#card-template",
     handleImageClick,
     deleteCardPopup,
-    (cardElement) => {
-      cardElement.remove();
-    }
+    handleDeleteCard
+    // (cardElement) => {
+    //   cardElement.remove();
+    // }
   );
   const cardElement = card.getView();
   cardElement.dataset.id = item._id; // store the cardId to the card element
