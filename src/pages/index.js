@@ -162,7 +162,7 @@ function renderCard(item, method = "prepend") {
   const cardElement = card.getView();
   cardElement.dataset.id = item._id; // store the cardId to the card element
   cardListElement[method](cardElement);
-  // console.log("Card ID:", cardElement.dataset.id);
+  console.log("Card ID:", cardElement.dataset.id);
 }
 
 // retrieve initial cards
@@ -190,8 +190,10 @@ addNewCardBtn.addEventListener("click", () => {
 });
 
 deleteButton.addEventListener("click", () => {
+  console.log("Delete button (Yes) clicked");
   const cardId = deleteButton.dataset.cardId; // retrieve cardId
   if (!cardId) return; // ensure cardId exists before API call
+  handleDeleteCard(cardId);
 
   api.deleteCard(cardId).then(() => {
     const cardElement = document.querySelector(`[data-id="${cardId}"]`); // find card element

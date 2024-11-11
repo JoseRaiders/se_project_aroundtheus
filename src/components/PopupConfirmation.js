@@ -9,6 +9,11 @@ export default class PopupConfirmation extends Popup {
     );
   }
 
+  open(cardId) {
+    this._cardId = cardId; // store cardId when popup opens
+    super.open();
+  }
+
   setConfirmCallback(callback) {
     this._handleConfirm = callback;
   }
@@ -20,7 +25,7 @@ export default class PopupConfirmation extends Popup {
   setEventListeners() {
     super.setEventListeners();
     this._confirmButton.addEventListener("click", () => {
-      this._handleConfirm(this._cardId);
+      this._handleConfirm(this._cardId); // store cardId to delete handler
       this.close();
     });
   }
