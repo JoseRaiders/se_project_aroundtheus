@@ -41,9 +41,10 @@ export default class Card {
   }
 
   _handleDeleteButton() {
+    this._cardId = this._cardElement.dataset.id; // store the cardId on the card element
     this._deleteCardPopup.open();
     this._deleteCardPopup.setConfirmCallback(() => {
-      this._handleDeleteCard(this._cardElement);
+      this._handleDeleteCard(this._cardElement); // pass card element to remove it
     });
     // this._cardElement.remove();
     // this._cardElement = null;

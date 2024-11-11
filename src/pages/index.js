@@ -20,6 +20,7 @@ const profileEditForm = document.forms["profile-form"];
 const cardListElement = document.querySelector(".cards__list");
 const addNewCardBtn = document.querySelector(".profile__add-button");
 const newCardForm = document.forms["card-form"];
+const deleteButton = document.querySelector(".modal__button-delete");
 
 /*=============================================
 =                     API                     =
@@ -154,6 +155,7 @@ function renderCard(item, method = "prepend") {
     }
   );
   const cardElement = card.getView();
+  cardElement.dataset.id = item._id; // store the cardId to the card element
   cardListElement[method](cardElement);
 }
 
@@ -179,4 +181,17 @@ profileEditBtn.addEventListener("click", () => {
 // reset validation before opening the card modal
 addNewCardBtn.addEventListener("click", () => {
   addCardPopup.open();
+});
+
+deleteButton.addEventListener("click", () => {
+  const cardId = deletebutton.dataset.cardId; // retrieve cardId
+  if (!cardId) return; // ensure cardId exists before API call
+
+  api.deleteCard(cardId).then(() => {
+    const cardElement = document.querySelector(`[data-id="${cardId}"]`); // find card element
+    if (cardElement) {
+      cardElement.remove();
+    }
+    deleteCardPopup.close();
+  });
 });
