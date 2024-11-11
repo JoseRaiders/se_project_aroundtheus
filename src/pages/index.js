@@ -34,7 +34,7 @@ const api = new Api({
 });
 
 /*=============================================
-=            Section and UserInfo             =
+=            Render Cards & Delete            =
 =============================================*/
 // initalizate delete card button before new section
 const deleteCardPopup = new PopupConfirmation(
@@ -46,11 +46,16 @@ deleteCardPopup.setEventListeners();
 // handle the delete button click
 function handleDeleteCard(cardElement) {
   const cardId = cardElement.dataset.id;
+
+  // delete request to the API
   api.deleteCard(cardId).then(() => {
-    cardElement.remove();
+    cardElement.remove(); // remove card from the DOM
   });
 }
 
+/*=============================================
+=            Section and UserInfo             =
+=============================================*/
 const section = new Section(
   {
     items: initialCards,
