@@ -1,10 +1,18 @@
 // creates the cards with the image and title
 export default class Card {
-  constructor(card, cardSelector, handleImageClick) {
+  constructor(
+    card,
+    cardSelector,
+    handleImageClick,
+    deleteCardPopup,
+    handleDeleteCard
+  ) {
     this._name = card.name;
     this._link = card.link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._deleteCardPopup = deleteCardPopup;
+    this._handleDeleteCard = handleDeleteCard;
   }
 
   /*============================================
@@ -33,8 +41,12 @@ export default class Card {
   }
 
   _handleDeleteButton() {
-    this._cardElement.remove();
-    this._cardElement = null;
+    this._deleteCardPopup.open();
+    this._deleteCardPopup.setConfirmCallback(() => {
+      this._handleDeleteCard(this._cardElement);
+    });
+    // this._cardElement.remove();
+    // this._cardElement = null;
   }
 
   // get the card view and set event listeners

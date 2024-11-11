@@ -10,6 +10,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, settings } from "../utils/constants.js";
 import Api from "../components/Api.js";
+import PopupConfirmation from "../components/PopupConfirmation.js";
 
 /*=============================================
 =                  Elements                   =
@@ -19,20 +20,6 @@ const profileEditForm = document.forms["profile-form"];
 const cardListElement = document.querySelector(".cards__list");
 const addNewCardBtn = document.querySelector(".profile__add-button");
 const newCardForm = document.forms["card-form"];
-// const profileEditModal = document.querySelector("#profile-edit-modal");
-// const profileTitle = document.querySelector(".profile__title");
-// const profileDescription = document.querySelector(".profile__description");
-// const profileTitleInput = document.querySelector("#modal-title-input");
-// const profileDescriptionInput = document.querySelector(
-//   "#modal-description-input"
-// );
-// const cardModal = document.querySelector("#add-card-modal");
-// const cardTitleInput = newCardForm.querySelector("#modal-card-title");
-// const cardLinkInput = newCardForm.querySelector("#modal-card-link");
-// const imagePreviewModal = document.querySelector("#modal-image-preview");
-// const modalImage = imagePreviewModal.querySelector(".modal__image-preview");
-// const modalTitle = imagePreviewModal.querySelector(".modal__image-title");
-// const popups = document.querySelectorAll(".modal");
 
 /*=============================================
 =                     API                     =
@@ -48,6 +35,21 @@ const api = new Api({
 /*=============================================
 =            Section and UserInfo             =
 =============================================*/
+// initalizate delete card button before new section
+const deleteCardPopup = new PopupConfirmation(
+  "#delete-card-modal",
+  handleDeleteCard
+);
+deleteCardPopup.setEventListeners();
+
+// handle the delete button click
+function handleDeleteCard(card) {
+  const cardId = card.id;
+  api.deleteCard(cardId).then(() => {
+    card.remove();
+  });
+}
+
 const section = new Section(
   {
     items: initialCards,
@@ -142,7 +144,15 @@ function handleImageClick(link, name) {
 
 // refactored renderCard function using the Card class
 function renderCard(item, method = "prepend") {
-  const card = new Card(item, "#card-template", handleImageClick);
+  const card = new Card(
+    item,
+    "#card-template",
+    handleImageClick,
+    deleteCardPopup,
+    (cardElement) => {
+      cardElement.remove();
+    }
+  );
   const cardElement = card.getView();
   cardListElement[method](cardElement);
 }

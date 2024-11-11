@@ -197,6 +197,27 @@
   text-align: center;
 }
 
+.modal__heading-delete {
+  margin: 0;
+}
+
+.modal__button-delete {
+  margin: 38px 0 0;
+  padding: 0;
+  background-color: #000;
+  width: 100%;
+  height: 50px;
+  border-radius: 2px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.1;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  text-align: center;
+  box-sizing: border-box;
+}
+
 /* styles for small to large smartphones */
 @media screen and (max-width: 400px) and (min-width: 320px) {
   .modal__container {

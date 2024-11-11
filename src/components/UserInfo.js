@@ -26,3 +26,6 @@ export default class UserInfo {
     }
   }
 }
+
+/* remove the if statement for avatar after
+I've got everything working */
