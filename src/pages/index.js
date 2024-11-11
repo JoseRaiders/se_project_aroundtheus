@@ -44,10 +44,10 @@ const deleteCardPopup = new PopupConfirmation(
 deleteCardPopup.setEventListeners();
 
 // handle the delete button click
-function handleDeleteCard(card) {
-  const cardId = card.id;
+function handleDeleteCard(cardElement) {
+  const cardId = cardElement.dataset.id;
   api.deleteCard(cardId).then(() => {
-    card.remove();
+    cardElement.remove();
   });
 }
 
@@ -67,7 +67,7 @@ const userInfo = new UserInfo({
 
 // retrieve use info
 api.getUserInfo().then((data) => {
-  console.log(data);
+  // console.log(data);
   userInfo.setUserInfo({
     name: data.name,
     about: data.about,
@@ -157,6 +157,7 @@ function renderCard(item, method = "prepend") {
   const cardElement = card.getView();
   cardElement.dataset.id = item._id; // store the cardId to the card element
   cardListElement[method](cardElement);
+  // console.log("Card ID:", cardElement.dataset.id);
 }
 
 // retrieve initial cards
@@ -184,7 +185,7 @@ addNewCardBtn.addEventListener("click", () => {
 });
 
 deleteButton.addEventListener("click", () => {
-  const cardId = deletebutton.dataset.cardId; // retrieve cardId
+  const cardId = deleteButton.dataset.cardId; // retrieve cardId
   if (!cardId) return; // ensure cardId exists before API call
 
   api.deleteCard(cardId).then(() => {
