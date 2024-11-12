@@ -19,9 +19,8 @@ export default class UserInfo {
     // add new user data
     this._nameElement.textContent = name;
     this._descriptionElement.textContent = about;
-    this._avatarElement.src = avatar;
+    if (avatar) {
+      this._avatarElement.src = avatar;
+    }
   }
 }
-
-/* remove the if statement for avatar after
-I've got everything working */

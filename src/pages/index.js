@@ -21,6 +21,7 @@ const cardListElement = document.querySelector(".cards__list");
 const addNewCardBtn = document.querySelector(".profile__add-button");
 const newCardForm = document.forms["card-form"];
 const deleteButton = document.querySelector(".modal__button-delete");
+const avatarEditButton = document.querySelector(".profile__image-overlay");
 
 /*=============================================
 =                     API                     =
@@ -56,6 +57,12 @@ function handleDeleteCard(cardElement) {
 /*=============================================
 =            Section and UserInfo             =
 =============================================*/
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  descriptionSelector: ".profile__description",
+  avatarSelector: ".profile__image",
+});
+
 const section = new Section(
   {
     items: initialCards,
@@ -64,11 +71,6 @@ const section = new Section(
   ".cards__list"
 );
 section.renderItems();
-
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  descriptionSelector: ".profile__description",
-});
 
 // retrieve use info
 api.getUserInfo().then((data) => {
@@ -84,10 +86,15 @@ function handleProfileFormSubmit(inputValues) {
   userInfo.setUserInfo({
     name: inputValues.name,
     about: inputValues.about,
+    avatar: inputValues.avatar,
   });
 
   api
-    .setUserInfo({ name: inputValues.name, about: inputValues.about })
+    .setUserInfo({
+      name: inputValues.name,
+      about: inputValues.about,
+      avatar: inputValues.avatar,
+    })
     .then((data) => {
       // after updating, reflect the changes in the UI
       userInfo.setUserInfo({
@@ -97,6 +104,24 @@ function handleProfileFormSubmit(inputValues) {
       });
       profilePopup.close();
     });
+}
+
+/*=============================================
+=               Handle avatar                 =
+=============================================*/
+// instantiate the avatar popup
+const avatarPopup = new PopupWithForm(
+  "#avatar-picture-modal",
+  handleAvatarFormSubmit
+);
+avatarPopup.setEventListeners();
+
+function handleAvatarFormSubmit(inputValues) {
+  // pass avatar url to the API
+  api.setUserAvatar(inputValues.avatar).then((updatedData) => {
+    userInfo.setUserInfo(updatedData); // update avatar in teh DOM
+    avatarPopup.close();
+  });
 }
 
 /*=============================================
@@ -161,9 +186,12 @@ function renderCard(item, method = "prepend") {
   const cardElement = card.getView();
   cardElement.dataset.id = item._id; // store the cardId to the card element
   cardListElement[method](cardElement);
-  console.log("Card ID:", cardElement.dataset.id);
+  // console.log("Card ID:", cardElement.dataset.id);
 }
 
+/*=============================================
+=               Initial Cards                 =
+=============================================*/
 // retrieve initial cards
 api.getInitialCards().then((cards) => {
   // display cards in the DOM
@@ -201,4 +229,9 @@ deleteButton.addEventListener("click", () => {
     }
     deleteCardPopup.close();
   });
+});
+
+// open the popup when the avatar edit icon is clicked
+avatarEditButton.addEventListener("click", () => {
+  avatarPopup.open();
 });
