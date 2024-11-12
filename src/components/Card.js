@@ -5,20 +5,24 @@ export default class Card {
     cardSelector,
     handleImageClick,
     deleteCardPopup,
-    handleDeleteCard
+    handleDeleteCard,
+    api
   ) {
     this._name = card.name;
     this._link = card.link;
+    this._id = card._id;
+    this._isLiked = card.isLiked;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._deleteCardPopup = deleteCardPopup;
     this._handleDeleteCard = handleDeleteCard;
+    this._api = api;
+    this._handleLikeIcon = this._handleLikeIcon.bind(this);
   }
 
   /*============================================
   =                  Methods                   =
   =============================================*/
-
   // like button event listener
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
@@ -37,7 +41,18 @@ export default class Card {
   }
 
   _handleLikeIcon() {
-    this._likeButton.classList.toggle("card__like-button_active");
+    // this._likeButton.classList.toggle("card__like-button_active");
+    if (this._isLiked) {
+      this._api.dislikeCard(this._id).then(() => {
+        this._isLiked = false;
+        this._likeButton.classList.remove("card__like-button_active");
+      });
+    } else {
+      this._api.likeCard(this._id).then(() => {
+        this._isLiked = true;
+        this._likeButton.classList.add("card__like-button_active");
+      });
+    }
   }
 
   _handleDeleteButton() {
@@ -69,6 +84,11 @@ export default class Card {
 
     // invoking the event listeners
     this._setEventListeners();
+
+    // initial like status
+    if (this._isLiked) {
+      this._likeButton.classList.add("card__like-button_active");
+    }
 
     // return the card element
     return this._cardElement;
