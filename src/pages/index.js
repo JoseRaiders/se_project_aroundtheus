@@ -22,6 +22,7 @@ const addNewCardBtn = document.querySelector(".profile__add-button");
 const newCardForm = document.forms["card-form"];
 const deleteButton = document.querySelector(".modal__button-delete");
 const avatarEditButton = document.querySelector(".profile__image-overlay");
+const avatarForm = document.forms["avatar-form"];
 
 /*=============================================
 =                     API                     =
@@ -129,9 +130,11 @@ function handleAvatarFormSubmit(inputValues) {
 =============================================*/
 const editFormValidation = new FormValidator(settings, profileEditForm);
 const addFormValidation = new FormValidator(settings, newCardForm);
+const avatarFormValidation = new FormValidator(settings, avatarForm);
 
 editFormValidation.enableValidation(); // check the profile form
 addFormValidation.enableValidation(); // check the form adding new cards
+avatarFormValidation.enableValidation(); // check the avatar form
 
 /*=============================================
 =            Popup and Form Instances         =
@@ -217,7 +220,7 @@ addNewCardBtn.addEventListener("click", () => {
 });
 
 deleteButton.addEventListener("click", () => {
-  console.log("Delete button (Yes) clicked");
+  // console.log("Delete button (Yes) clicked");
   const cardId = deleteButton.dataset.cardId; // retrieve cardId
   if (!cardId) return; // ensure cardId exists before API call
   handleDeleteCard(cardId);
