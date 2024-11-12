@@ -28,11 +28,20 @@
         </header>
         <main class="content">
           <section class="profile page__section">
-            <img
-              class="profile__image"
-              src="<%=require('./images/jacques-cousteau.jpg')%>"
-              alt="Avatar"
-            />
+            <div class="profile__avatar">
+              <img
+                class="profile__image"
+                src="<%=require('./images/jacques-cousteau.jpg')%>"
+                alt="Avatar"
+              />
+              <div class="profile__image-overlay">
+                <img
+                  src="<%=require('./images/avatar-edit-icon.svg')%>"
+                  alt="Edit Icon"
+                  class="profile__edit-icon"
+                />
+              </div>
+            </div>
             <div class="profile__info">
               <h1 class="profile__title">Jacques Cousteau</h1>
               <button
@@ -132,6 +141,34 @@
           <button
             type="submit"
             class="modal__button"
+            aria-label="Save button"
+            disabled
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Update avatar modal -->
+    <div class="modal" id="avatar-picture-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="avatar-edit-close"></button>
+        <h2 class="modal__heading">Change profile picture</h2>
+        <form class="modal__form" name="avatar-form">
+          <div class="modal__label">
+            <input
+              type="url"
+              class="modal__input"
+              id="avatar"
+              name="avatar"
+              placeholder="Profile picture link"
+              required
+            />
+            <span class="modal__input-error2" id="modal-card-link-error"></span>
+          </div>
+          <button
+            type="submit"
+            class="modal__button modal__button-avatar"
             aria-label="Save button"
             disabled
           >

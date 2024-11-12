@@ -29,6 +29,16 @@ export default class Api {
     }).then(this._handleResponse);
   }
 
+  setUserAvatar(avatarUrl) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: avatarUrl,
+      }),
+    }).then(this._handleResponse);
+  }
+
   addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",

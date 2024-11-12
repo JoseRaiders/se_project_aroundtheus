@@ -201,7 +201,8 @@
   margin: 0;
 }
 
-.modal__button-delete {
+.modal__button-delete,
+.modal__button-avatar {
   margin: 38px 0 0;
   padding: 0;
   background-color: #000;

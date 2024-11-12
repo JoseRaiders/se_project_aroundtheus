@@ -76,7 +76,7 @@ api.getUserInfo().then((data) => {
   userInfo.setUserInfo({
     name: data.name,
     about: data.about,
-    // avatar: data.avatar,
+    avatar: data.avatar,
   });
 });
 
@@ -93,7 +93,7 @@ function handleProfileFormSubmit(inputValues) {
       userInfo.setUserInfo({
         name: data.name,
         about: data.about,
-        // avatar: data.avatar,
+        avatar: data.avatar,
       });
       profilePopup.close();
     });
