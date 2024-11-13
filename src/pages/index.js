@@ -90,7 +90,7 @@ function handleProfileFormSubmit(inputValues) {
     avatar: inputValues.avatar,
   });
 
-  api
+  return api
     .setUserInfo({
       name: inputValues.name,
       about: inputValues.about,
@@ -119,7 +119,7 @@ avatarPopup.setEventListeners();
 
 function handleAvatarFormSubmit(inputValues) {
   // pass avatar url to the API
-  api.setUserAvatar(inputValues.avatar).then((updatedData) => {
+  return api.setUserAvatar(inputValues.avatar).then((updatedData) => {
     userInfo.setUserInfo(updatedData); // update avatar in teh DOM
     avatarPopup.close();
   });
@@ -157,7 +157,7 @@ function handleAddCardFormSubmit(inputValues) {
   const link = inputValues.link;
 
   // send new card to the server
-  api.addCard({ name, link }).then((newCard) => {
+  return api.addCard({ name, link }).then((newCard) => {
     renderCard(newCard);
     addCardPopup.close();
     newCardForm.reset();
