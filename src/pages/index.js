@@ -20,7 +20,6 @@ const profileEditForm = document.forms["profile-form"];
 const cardListElement = document.querySelector(".cards__list");
 const addNewCardBtn = document.querySelector(".profile__add-button");
 const newCardForm = document.forms["card-form"];
-const deleteButton = document.querySelector(".modal__button-delete");
 const avatarEditButton = document.querySelector(".profile__image-overlay");
 const avatarForm = document.forms["avatar-form"];
 
@@ -39,16 +38,15 @@ const api = new Api({
 =            Render & Delete Cards            =
 =============================================*/
 // initalizate delete card button before new section
-const deleteCardPopup = new PopupConfirmation(
-  "#delete-card-modal"
-  // handleDeleteCard
-);
+const deleteCardPopup = new PopupConfirmation({
+  popupSelector: "#delete-card-modal",
+  api: api,
+});
 deleteCardPopup.setEventListeners();
 
 // handle the delete button click
 function handleDeleteCard(cardId, cardElement) {
   // const cardId = cardElement.dataset.id;
-
   // delete request to the API
   return api
     .deleteCard(cardId)
@@ -77,13 +75,11 @@ const section = new Section(
   },
   ".cards__list"
 );
-section.renderItems();
 
 // retrieve use info
 api
   .getUserInfo()
   .then((data) => {
-    // console.log(data);
     // update user info in DOM after successful response
     userInfo.setUserInfo({
       name: data.name,
@@ -109,9 +105,6 @@ function handleProfileFormSubmit(inputValues) {
         about: data.about,
         avatar: data.avatar,
       });
-    })
-    .catch((err) => {
-      console.error("Error updating profile:", err);
     });
 }
 
@@ -127,15 +120,10 @@ avatarPopup.setEventListeners();
 
 function handleAvatarFormSubmit(inputValues) {
   // pass avatar url to the API
-  return api
-    .setUserAvatar(inputValues.avatar)
-    .then((updatedData) => {
-      // update avatar in the DOM only after successful response
-      userInfo.setUserInfo(updatedData);
-    })
-    .catch((err) => {
-      console.error("Error updating avatar:", err);
-    });
+  return api.setUserAvatar(inputValues.avatar).then((updatedData) => {
+    // update avatar in the DOM only after successful response
+    userInfo.setUserInfo(updatedData);
+  });
 }
 
 /*=============================================
@@ -163,25 +151,19 @@ const addCardPopup = new PopupWithForm(
   handleAddCardFormSubmit
 );
 addCardPopup.setEventListeners();
-addCardPopup.getForm();
 
 function handleAddCardFormSubmit(inputValues) {
   const name = inputValues.title;
   const link = inputValues.link;
 
   // send new card to the server
-  return api
-    .addCard({ name, link })
-    .then((newCard) => {
-      // render new card only after successful API response
-      renderCard(newCard);
-      newCardForm.reset();
-      // disable submit button after adding a card
-      addFormValidation.disableButton();
-    })
-    .catch((err) => {
-      console.error("Error adding new card:", err);
-    });
+  return api.addCard({ name, link }).then((newCard) => {
+    // render new card only after successful API response
+    renderCard(newCard);
+    newCardForm.reset();
+    // disable submit button after adding a card
+    addFormValidation.disableButton();
+  });
 }
 
 /*=============================================
@@ -195,7 +177,7 @@ function handleImageClick(link, name) {
 }
 
 // refactored renderCard function using the Card class
-function renderCard(item, method = "prepend") {
+function renderCard(item) {
   const card = new Card(
     item,
     "#card-template",
@@ -206,7 +188,8 @@ function renderCard(item, method = "prepend") {
   );
   const cardElement = card.getView();
   cardElement.dataset.id = item._id; // store the cardId to the card element
-  cardListElement[method](cardElement);
+  section.addItem(cardElement); // add the card element to section
+  // cardListElement[method](cardElement);
   // console.log("Card ID:", cardElement.dataset.id);
 }
 
@@ -217,11 +200,9 @@ function renderCard(item, method = "prepend") {
 api
   .getInitialCards()
   .then((cards) => {
-    // display cards in the DOM after successful response
-    cards.forEach((card) => {
-      // render each card (assuming a renderCard function)
-      renderCard(card);
-    });
+    // display cards in the section instance
+    section._items = cards;
+    section.renderItems(); // render the items
   })
   .catch((err) => {
     console.error("Error fetching initial cards:", err);
@@ -230,19 +211,22 @@ api
 /*=============================================
 =              Event Listeners                =
 =============================================*/
+// open profile popup when clicking the edit button
 profileEditBtn.addEventListener("click", () => {
   const currentUserInfo = userInfo.getUserInfo(); // { name: 'Profile Name', about: 'Profile Description' }
   profilePopup.setInputValues(currentUserInfo); // populate form inputs with user data
-  editFormValidation.resetValidation(); // clear any validation errors before opening
+  editFormValidation.resetValidation(); // clear any validation errors
   profilePopup.open();
 });
 
 // reset validation before opening the card modal
 addNewCardBtn.addEventListener("click", () => {
   addCardPopup.open();
+  addFormValidation.resetValidation();
 });
 
 // open the popup when the avatar edit icon is clicked
 avatarEditButton.addEventListener("click", () => {
   avatarPopup.open();
+  avatarFormValidation.resetValidation();
 });

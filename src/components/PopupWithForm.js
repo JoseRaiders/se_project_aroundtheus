@@ -26,7 +26,6 @@ export default class PopupWithForm extends Popup {
   // close popup and reset form along with button text
   close() {
     super.close();
-    this._popupForm.reset();
     this.renderLoading(false); // reset button when closed
   }
 
@@ -64,7 +63,7 @@ export default class PopupWithForm extends Popup {
       this._handleFormSubmit(this._getInputValues())
         .then(() => {
           this._popupForm.reset(); // reset only on successfully submission
-          this.close();
+          this.close(); // close popup after success
         })
         .catch((err) => {
           console.error(`Form submission error: ${err}`);
