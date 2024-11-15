@@ -265,6 +265,10 @@
   .modal__button-delete {
     margin-top: 30px;
   }
+
+  .modal__heading-avatar {
+    margin-bottom: 20px;
+  }
 }
 
 @media screen and (max-width: 600px) and (min-width: 500px) {

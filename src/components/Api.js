@@ -8,7 +8,9 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
-    }).then(this._handleResponse);
+    })
+      .then(this._handleResponse)
+      .catch(this._handleError);
   }
 
   setUserInfo({ name, about }) {
@@ -19,14 +21,18 @@ export default class Api {
         name: name,
         about: about,
       }),
-    }).then(this._handleResponse);
+    })
+      .then(this._handleResponse)
+      .catch(this._handleError);
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
-    }).then(this._handleResponse);
+    })
+      .then(this._handleResponse)
+      .catch(this._handleError);
   }
 
   setUserAvatar(avatar) {
@@ -36,7 +42,9 @@ export default class Api {
       body: JSON.stringify({
         avatar: avatar,
       }),
-    }).then(this._handleResponse);
+    })
+      .then(this._handleResponse)
+      .catch(this._handleError);
   }
 
   addCard({ name, link }) {
@@ -44,28 +52,36 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({ name, link }),
-    }).then(this._handleResponse);
+    })
+      .then(this._handleResponse)
+      .catch(this._handleError);
   }
 
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(this._handleResponse);
+    })
+      .then(this._handleResponse)
+      .catch(this._handleError);
   }
 
   likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
-    }).then(this._handleResponse);
+    })
+      .then(this._handleResponse)
+      .catch(this._handleError);
   }
 
   dislikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(this._handleResponse);
+    })
+      .then(this._handleResponse)
+      .catch(this._handleError);
   }
 
   _handleResponse(res) {
@@ -74,5 +90,9 @@ export default class Api {
     }
     // if the server returns an error, reject the promise
     return Promise.reject(`Error: ${res.status}`);
+  }
+
+  _handleError(err) {
+    console.error("API Error:", err);
   }
 }

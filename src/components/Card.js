@@ -43,15 +43,25 @@ export default class Card {
   _handleLikeIcon() {
     // this._likeButton.classList.toggle("card__like-button_active");
     if (this._isLiked) {
-      this._api.dislikeCard(this._id).then(() => {
-        this._isLiked = false;
-        this._likeButton.classList.remove("card__like-button_active");
-      });
+      this._api
+        .dislikeCard(this._id)
+        .then(() => {
+          this._isLiked = false;
+          this._likeButton.classList.remove("card__like-button_active");
+        })
+        .catch((err) => {
+          console.error("Error disliking card:", err);
+        });
     } else {
-      this._api.likeCard(this._id).then(() => {
-        this._isLiked = true;
-        this._likeButton.classList.add("card__like-button_active");
-      });
+      this._api
+        .likeCard(this._id)
+        .then(() => {
+          this._isLiked = true;
+          this._likeButton.classList.add("card__like-button_active");
+        })
+        .catch((err) => {
+          console.error("Error disliking card:", err);
+        });
     }
   }
 
@@ -59,7 +69,10 @@ export default class Card {
     const cardId = this._cardElement.dataset.id; // get the cardId
     this._deleteCardPopup.open(cardId); // pass cardId when opening the popup
     this._deleteCardPopup.setConfirmCallback(() => {
-      this._handleDeleteCard(this._cardElement); // pass card element to remove it
+      this._handleDeleteCard(this._cardElement) // pass card element to remove it
+        .catch((err) => {
+          console.error("Error deleting card:", err);
+        });
     });
   }
 

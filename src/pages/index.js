@@ -50,9 +50,14 @@ function handleDeleteCard(cardElement) {
   const cardId = cardElement.dataset.id;
 
   // delete request to the API
-  api.deleteCard(cardId).then(() => {
-    cardElement.remove(); // remove card from the DOM
-  });
+  api
+    .deleteCard(cardId)
+    .then(() => {
+      cardElement.remove(); // remove card from the DOM
+    })
+    .catch((err) => {
+      console.error("Error deleting card:", err);
+    });
 }
 
 /*=============================================
@@ -74,14 +79,19 @@ const section = new Section(
 section.renderItems();
 
 // retrieve use info
-api.getUserInfo().then((data) => {
-  // console.log(data);
-  userInfo.setUserInfo({
-    name: data.name,
-    about: data.about,
-    avatar: data.avatar,
+api
+  .getUserInfo()
+  .then((data) => {
+    // console.log(data);
+    userInfo.setUserInfo({
+      name: data.name,
+      about: data.about,
+      avatar: data.avatar,
+    });
+  })
+  .catch((err) => {
+    console.error("Error fetching user info:", err);
   });
-});
 
 function handleProfileFormSubmit(inputValues) {
   userInfo.setUserInfo({
@@ -119,10 +129,15 @@ avatarPopup.setEventListeners();
 
 function handleAvatarFormSubmit(inputValues) {
   // pass avatar url to the API
-  return api.setUserAvatar(inputValues.avatar).then((updatedData) => {
-    userInfo.setUserInfo(updatedData); // update avatar in teh DOM
-    avatarPopup.close();
-  });
+  return api
+    .setUserAvatar(inputValues.avatar)
+    .then((updatedData) => {
+      userInfo.setUserInfo(updatedData); // update avatar in teh DOM
+      avatarPopup.close();
+    })
+    .catch((err) => {
+      console.error("Error updating avatar:", err);
+    });
 }
 
 /*=============================================
@@ -157,13 +172,18 @@ function handleAddCardFormSubmit(inputValues) {
   const link = inputValues.link;
 
   // send new card to the server
-  return api.addCard({ name, link }).then((newCard) => {
-    renderCard(newCard);
-    addCardPopup.close();
-    newCardForm.reset();
-    // disable submit button after adding a card
-    addFormValidation.disableButton();
-  });
+  return api
+    .addCard({ name, link })
+    .then((newCard) => {
+      renderCard(newCard);
+      addCardPopup.close();
+      newCardForm.reset();
+      // disable submit button after adding a card
+      addFormValidation.disableButton();
+    })
+    .catch((err) => {
+      console.error("Error adding new card:", err);
+    });
 }
 
 /*=============================================
@@ -196,13 +216,18 @@ function renderCard(item, method = "prepend") {
 =               Initial Cards                 =
 =============================================*/
 // retrieve initial cards
-api.getInitialCards().then((cards) => {
-  // display cards in the DOM
-  cards.forEach((card) => {
-    // render each card (assuming a renderCard function)
-    renderCard(card);
+api
+  .getInitialCards()
+  .then((cards) => {
+    // display cards in the DOM
+    cards.forEach((card) => {
+      // render each card (assuming a renderCard function)
+      renderCard(card);
+    });
+  })
+  .catch((err) => {
+    console.error("Error fetching initial cards:", err);
   });
-});
 
 /*=============================================
 =              Event Listeners                =
