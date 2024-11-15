@@ -27,7 +27,7 @@ export default class PopupWithForm extends Popup {
   close() {
     super.close();
     this._popupForm.reset();
-    this._renderLoading(false); // reset button when closed
+    this.renderLoading(false); // reset button when closed
   }
 
   // collect & return form input values
@@ -39,31 +39,38 @@ export default class PopupWithForm extends Popup {
     return inputValues;
   }
 
-  _renderLoading(isLoading) {
-    this._submitButton.textContent = isLoading
-      ? "Saving..."
-      : this._submitButtonText;
+  renderLoading(isLoading, loadingText = "Saving...") {
+    if (isLoading) {
+      this._submitButton.textContent = loadingText;
+    } else {
+      // return the initial text
+      this._submitButton.textContent = this._submitButtonText;
+    }
   }
+
+  // _renderLoading(isLoading) {
+  //   this._submitButton.textContent = isLoading
+  //     ? "Saving..."
+  //     : this._submitButtonText;
+  // }
 
   // handle outside click closure & form submission
   setEventListeners() {
     super.setEventListeners();
     this._popupForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      // this._handleFormSubmit(this._getInputValues());
-      // this._popupForm.reset(); // reset from input after successful form submission
-      // this.close();
 
-      this._renderLoading(true); // show Saving...
+      this.renderLoading(true); // show Saving...
       this._handleFormSubmit(this._getInputValues())
         .then(() => {
+          this._popupForm.reset(); // reset only on successfully submission
           this.close();
         })
         .catch((err) => {
           console.error(`Form submission error: ${err}`);
         })
         .finally(() => {
-          this._renderLoading(false); // revert to original text
+          this.renderLoading(false); // revert to original text
         });
     });
   }

@@ -40,20 +40,21 @@ const api = new Api({
 =============================================*/
 // initalizate delete card button before new section
 const deleteCardPopup = new PopupConfirmation(
-  "#delete-card-modal",
-  handleDeleteCard
+  "#delete-card-modal"
+  // handleDeleteCard
 );
 deleteCardPopup.setEventListeners();
 
 // handle the delete button click
-function handleDeleteCard(cardElement) {
-  const cardId = cardElement.dataset.id;
+function handleDeleteCard(cardId, cardElement) {
+  // const cardId = cardElement.dataset.id;
 
   // delete request to the API
-  api
+  return api
     .deleteCard(cardId)
     .then(() => {
       cardElement.remove(); // remove card from the DOM
+      deleteCardPopup.close(); // close the confirmation modal
     })
     .catch((err) => {
       console.error("Error deleting card:", err);
@@ -242,21 +243,6 @@ profileEditBtn.addEventListener("click", () => {
 // reset validation before opening the card modal
 addNewCardBtn.addEventListener("click", () => {
   addCardPopup.open();
-});
-
-deleteButton.addEventListener("click", () => {
-  // console.log("Delete button (Yes) clicked");
-  const cardId = deleteButton.dataset.cardId; // retrieve cardId
-  if (!cardId) return; // ensure cardId exists before API call
-  handleDeleteCard(cardId);
-
-  api.deleteCard(cardId).then(() => {
-    const cardElement = document.querySelector(`[data-id="${cardId}"]`); // find card element
-    if (cardElement) {
-      cardElement.remove();
-    }
-    deleteCardPopup.close();
-  });
 });
 
 // open the popup when the avatar edit icon is clicked
