@@ -84,6 +84,7 @@ api
   .getUserInfo()
   .then((data) => {
     // console.log(data);
+    // update user info in DOM after successful response
     userInfo.setUserInfo({
       name: data.name,
       about: data.about,
@@ -95,12 +96,6 @@ api
   });
 
 function handleProfileFormSubmit(inputValues) {
-  userInfo.setUserInfo({
-    name: inputValues.name,
-    about: inputValues.about,
-    avatar: inputValues.avatar,
-  });
-
   return api
     .setUserInfo({
       name: inputValues.name,
@@ -108,13 +103,15 @@ function handleProfileFormSubmit(inputValues) {
       avatar: inputValues.avatar,
     })
     .then((data) => {
-      // after updating, reflect the changes in the UI
+      // update DOM only after successful response
       userInfo.setUserInfo({
         name: data.name,
         about: data.about,
         avatar: data.avatar,
       });
-      profilePopup.close();
+    })
+    .catch((err) => {
+      console.error("Error updating profile:", err);
     });
 }
 
@@ -133,8 +130,8 @@ function handleAvatarFormSubmit(inputValues) {
   return api
     .setUserAvatar(inputValues.avatar)
     .then((updatedData) => {
-      userInfo.setUserInfo(updatedData); // update avatar in teh DOM
-      avatarPopup.close();
+      // update avatar in the DOM only after successful response
+      userInfo.setUserInfo(updatedData);
     })
     .catch((err) => {
       console.error("Error updating avatar:", err);
@@ -176,8 +173,8 @@ function handleAddCardFormSubmit(inputValues) {
   return api
     .addCard({ name, link })
     .then((newCard) => {
+      // render new card only after successful API response
       renderCard(newCard);
-      addCardPopup.close();
       newCardForm.reset();
       // disable submit button after adding a card
       addFormValidation.disableButton();
@@ -220,7 +217,7 @@ function renderCard(item, method = "prepend") {
 api
   .getInitialCards()
   .then((cards) => {
-    // display cards in the DOM
+    // display cards in the DOM after successful response
     cards.forEach((card) => {
       // render each card (assuming a renderCard function)
       renderCard(card);
